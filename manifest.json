@@ -13,13 +13,13 @@
   "theme_color": "#172b4d",
   "icons": [
     {
-      "src": "icons/aza-192.png",
+      "src": "./aza-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icons/aza-512.png",
+      "src": "/aza-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
