@@ -213,7 +213,7 @@ function productIcon(p){const norm=v=>String(v||'').toLowerCase().replace(/[يى
 function productFallbackHtml(name,category){const n=String(name||'').toLowerCase().replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[‌\sـ\-_]/g,'');const c=String(category||'').toLowerCase().replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[‌\sـ\-_]/g,'');if(/تیشرت|تیشر|tshirt|t-shirt/.test(n+' '+c))return `<img src="${productImageData.tshirt||''}" alt="تیشرت" loading="eager">`;return productIcon({name,category})}
 function productHtml(p,withAction=false){return `<div class="product"><div class="picon">${p.image&&String(p.image).startsWith('data:image/')?`<img src="${p.image}" alt="${esc(p.name)}" onerror="this.onerror=null;this.outerHTML=productFallbackHtml(${JSON.stringify(p.name||'')},${JSON.stringify(p.category||'')})">`:productIcon(p)}</div><div class="pdetails"><b>${esc(p.name)}</b><small>${esc(p.category||'بدون دسته')} · رنگ ${esc(p.color||'—')} · سایز ${esc(p.size||'—')}<br>موجودی: ${fa(p.qty)} عدد</small></div><div class="price">${money(p.sell)}<small><button class="text-btn" onclick="editProduct(${p.id})">ویرایش</button> <button class="text-btn danger-text" onclick="deleteProduct(${p.id})">حذف</button></small>${withAction?`<small><button class="secondary" onclick="addToCart(${p.id})">افزودن +</button></small>`:''}</div></div>`}
 function renderProducts(){const q=(document.getElementById('productSearch')?.value||'').toLowerCase();const list=products.filter(p=>[p.name,p.category,p.color,p.size,p.barcode].join(' ').toLowerCase().includes(q));document.getElementById('productList').innerHTML=list.length?list.map(p=>productHtml(p)).join(''):'<div class="empty"><span>📦</span>کالایی پیدا نشد.</div>'}
-let azaCameraStream=null,azaScanTimer=null,azaBarcodeDetector=null,azaScanBusy=false,azaZxingReader=null,azaZxingControls=null,azaZxingLoading=null;
+let azaCameraStream=null,azaScanTimer=null,azaBarcodeDetector=null,azaScanBusy=false,azaBarcodeHandled=false,azaZxingReader=null,azaZxingControls=null,azaZxingLoading=null;
 function loadAzaZxing(){
  if(window.ZXing&&window.ZXing.BrowserMultiFormatReader)return Promise.resolve(true);
  if(azaZxingLoading)return azaZxingLoading;
@@ -230,7 +230,7 @@ function startNativeBarcodeFallback(status){
 }
 async function openBarcodeScanner(){
  const dlg=document.getElementById('barcodeScannerDialog'),video=document.getElementById('barcodeVideo'),status=document.getElementById('scannerStatus');
- if(!dlg.open)dlg.showModal();
+ if(!dlg.open){azaBarcodeHandled=false;dlg.showModal();}
  status.textContent='در حال درخواست دسترسی دوربین…';
  video.style.display='block';video.setAttribute('playsinline','');video.muted=true;video.autoplay=true;
  if(!window.isSecureContext && location.hostname!=='localhost' && location.protocol!=='file:'){
@@ -255,7 +255,7 @@ async function openBarcodeScanner(){
      try{
        azaZxingReader=new ZXing.BrowserMultiFormatReader();
        azaZxingControls=await azaZxingReader.decodeFromVideoElementContinuously(video,(result,err)=>{
-         if(result){const raw=String(result.getText?result.getText():result.text||'').trim();if(raw){status.textContent='بارکد خوانده شد: '+raw;handleScannedBarcode(raw)}}
+         if(result&&!azaBarcodeHandled){const raw=String(result.getText?result.getText():result.text||'').trim();if(raw){handleScannedBarcode(raw)}}
        });
        status.textContent='آماده اسکن؛ بارکد را واضح و ثابت مقابل دوربین نگه دار.';
      }catch(zerr){console.warn('ZXing scan start failed',zerr);azaZxingReader=null;azaZxingControls=null;startNativeBarcodeFallback(status)}
@@ -267,16 +267,19 @@ async function openBarcodeScanner(){
  }
 }
 async function scanBarcodeFrame(){
- if(!azaBarcodeDetector||!document.getElementById('barcodeScannerDialog').open||azaScanBusy)return;
+ if(!azaBarcodeDetector||!document.getElementById('barcodeScannerDialog').open||azaScanBusy||azaBarcodeHandled)return;
  const video=document.getElementById('barcodeVideo');
  if(video.readyState>=2){azaScanBusy=true;try{const found=await azaBarcodeDetector.detect(video);if(found&&found.length){const raw=String(found[0].rawValue||'').trim();if(raw){const status=document.getElementById('scannerStatus');status.textContent='بارکد خوانده شد: '+raw;handleScannedBarcode(raw);return}}}catch(e){console.debug('Barcode scan frame failed',e)}finally{azaScanBusy=false}}
  azaScanTimer=setTimeout(scanBarcodeFrame,220);
 }
 function handleScannedBarcode(raw){
+ if(azaBarcodeHandled||!document.getElementById('barcodeScannerDialog')?.open)return;
+ azaBarcodeHandled=true;
+ if(azaScanTimer){clearTimeout(azaScanTimer);azaScanTimer=null}
  const code=String(raw||'').trim().toLowerCase();const p=products.find(x=>String(x.barcode||'').trim().toLowerCase()===code||(Array.isArray(x.barcodeAliases)&&x.barcodeAliases.some(a=>String(a).trim().toLowerCase()===code)));
  if(!p){document.getElementById('scannerStatus').textContent='بارکد خوانده شد ('+raw+') اما برای هیچ کالای ثبت‌شده‌ای پیدا نشد. بارکد کالا را در بخش کالاها بررسی کن.';return}
  if(p.qty<=0){document.getElementById('scannerStatus').textContent='موجودی این کالا صفر است: '+p.name;toast('موجودی این کالا صفر است.');return}
- addToCart(p.id);document.getElementById('saleSearch').value='';closeBarcodeScanner();toast('کالای «'+p.name+'» با اسکن بارکد اضافه شد.');
+ closeBarcodeScanner();addToCart(p.id);document.getElementById('saleSearch').value='';toast('کالای «'+p.name+'» با اسکن بارکد اضافه شد.');
 }
 function useSaleManualBarcode(){const input=document.getElementById('saleManualBarcode'),raw=input.value.trim();if(!raw){toast('شماره بارکد را وارد کن.');input.focus();return}const p=products.find(x=>String(x.barcode||'').trim().toLowerCase()===raw.toLowerCase()||(Array.isArray(x.barcodeAliases)&&x.barcodeAliases.some(a=>String(a).trim().toLowerCase()===raw.toLowerCase())));if(!p){toast('این بارکد در کالاهای ثبت‌شده پیدا نشد.');return}if(p.qty<=0){toast('موجودی این کالا صفر است.');return}addToCart(p.id);input.value='';document.getElementById('saleSearch').value='';renderSaleProducts();}
 function closeBarcodeScanner(){if(azaScanTimer){clearTimeout(azaScanTimer);azaScanTimer=null}try{if(azaZxingControls&&typeof azaZxingControls.stop==='function')azaZxingControls.stop();else if(azaZxingReader&&typeof azaZxingReader.reset==='function')azaZxingReader.reset()}catch(e){}azaZxingControls=null;azaZxingReader=null;azaBarcodeDetector=null;azaScanBusy=false;if(azaCameraStream){azaCameraStream.getTracks().forEach(t=>t.stop());azaCameraStream=null}const video=document.getElementById('barcodeVideo');if(video){video.pause?.();video.srcObject=null}const dlg=document.getElementById('barcodeScannerDialog');if(dlg.open)dlg.close()}
