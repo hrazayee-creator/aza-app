@@ -35,6 +35,7 @@ dialog{border:0;border-radius:20px;padding:clamp(10px,3vw,16px);width:calc(100% 
 .support-icon{flex:0 0 42px;width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:#e0eaff;color:var(--blue);font-size:21px;font-weight:900}
 .support-copy{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
 .support-title{font-size:13px;font-weight:900;color:var(--navy)}
+.support-description{font-size:11px;line-height:1.8;color:#58677d;max-width:100%}
 .support-subtitle{font-size:11px;font-weight:700;color:#718096}
 .support-phone{display:inline-flex;align-items:center;justify-content:center;direction:ltr;margin-top:4px;padding:7px 12px;border-radius:10px;background:#fff;border:1px solid #d9e4fa;color:var(--blue);font-size:15px;font-weight:1000;text-decoration:none;letter-spacing:.35px;box-shadow:0 2px 7px #172b4d0a}
 .support-phone:active{transform:scale(.98)}
@@ -81,7 +82,7 @@ dialog{border:0;border-radius:20px;padding:clamp(10px,3vw,16px);width:calc(100% 
 <body>
 <div id="storageBoot"><div class="boot-card"><div class="boot-logo">AZA</div><h2 style="margin:0 0 8px">AZA</h2><p style="margin:0;line-height:1.9">در حال آماده‌سازی اطلاعات ذخیره‌شده روی گوشی…</p></div></div>
 <div id="updateBanner" class="update-banner"><span>نسخه جدید AZA آماده است.</span><button type="button" onclick="location.reload()">بارگذاری نسخه جدید</button></div>
-<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود</button><p class="hint" style="margin-top:12px">ورود اولیه پیش‌نمایش: admin / 1234</p><div class="support-panel login-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">پشتیبانی و دریافت نسخه جدید</div><div class="support-subtitle">آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div></form></div>
+<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود</button><p class="hint" style="margin-top:12px">ورود اولیه پیش‌نمایش: admin / 1234</p><div class="support-panel login-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">پشتیبانی و دریافت نسخه جدید</div><div class="support-description">مدیریت کالاها، موجودی و سوابق فروشگاه با AZA.</div><div class="support-subtitle">آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div></form></div>
 <header class="appbar">
   <div class="brand"><div class="logo" id="headerLogo">A</div><div class="aza-brandword"><strong>AZA</strong><small id="storeTitle">مدیریت فروشگاه شما</small></div></div>
   <div style="display:flex;align-items:center;gap:8px"><div class="offline">● حالت آفلاین</div><button class="logout-btn" type="button" onclick="logoutApp()">خروج</button></div>
@@ -109,16 +110,6 @@ dialog{border:0;border-radius:20px;padding:clamp(10px,3vw,16px);width:calc(100% 
   </details>
   <div class="section-head"><h2>دریافتی به تفکیک روش پرداخت</h2><button class="text-btn" onclick="showPage('payments')">مشاهده گزارش ←</button></div>
   <button class="card" id="paymentSummary" onclick="showPage('payments')" style="display:block;width:100%;text-align:right;cursor:pointer;color:inherit"></button>
-  <div class="aza-promo-card" dir="rtl">
-    <div class="aza-promo-mark">AZA</div>
-    <div class="aza-promo-copy">
-      <strong>مدیریت هوشمند فروشگاه شما</strong>
-      <p>ثبت و مدیریت کالاها، رنگ و سایز، موجودی و سوابق فروش؛ ساده و یکپارچه در برنامه AZA.</p>
-      <span>برای پشتیبانی و دریافت نسخه جدید با آزادمنش تماس بگیرید.</span>
-      <a href="tel:09372301428" dir="ltr">09372301428</a>
-    </div>
-  </div>
-
 </section>
 
 <section class="page" id="products">
@@ -153,25 +144,13 @@ dialog{border:0;border-radius:20px;padding:clamp(10px,3vw,16px);width:calc(100% 
 <section class="page" id="payments"><div class="welcome"><div><h1>گزارش دریافتی</h1><p>مبالغ دریافتی امروز و این ماه به تفکیک روش پرداخت</p></div></div><div class="section-head"><h2>دریافتی امروز</h2></div><div class="card" id="paymentTodayDetail"></div><div class="section-head"><h2>دریافتی این ماه</h2></div><div class="card" id="paymentMonthDetail"></div><button class="outline" onclick="showPage('dashboard')">بازگشت به داشبورد</button></section>
 <section class="page" id="settings">
  <div class="welcome"><div><h1>تنظیمات</h1><p>مشخصات فروشگاه و امنیت ورود</p></div></div>
- <div class="section-head"><h2>درباره برنامه و پشتیبانی</h2></div>
- <div class="aza-promo-card settings-promo" dir="rtl">
-  <div class="aza-promo-mark">AZA</div>
-  <div class="aza-promo-copy">
-   <strong>همه امور فروشگاه، در یک برنامه</strong>
-   <p>AZA برای مدیریت کالاها، رنگ و سایز، موجودی و سوابق فروش طراحی شده است. اطلاعات فروشگاه روی همین گوشی ذخیره می‌شود.</p>
-   <span>برای پشتیبانی و دریافت نسخه جدید لطفاً با شماره زیر تماس بگیرید.</span>
-   <b>آزادمنش</b>
-   <a href="tel:09372301428" dir="ltr">09372301428</a>
-  </div>
- </div>
- 
  <div class="card">
   <div class="field"><label>نام فروشگاه</label><input id="storeNameInput" placeholder="نام فروشگاه شما"></div><div class="formrow"><div class="field"><label>آدرس فروشگاه</label><input id="storeAddressInput" placeholder="آدرس فروشگاه"></div><div class="field"><label>موبایل فروشگاه</label><input id="storePhoneInput" type="tel" inputmode="tel" placeholder="شماره موبایل"></div></div>
   <div class="field"><label>لوگوی فروشگاه</label><div style="display:flex;align-items:center;gap:12px"><img class="settings-logo" id="storeLogoPreview" alt="لوگوی فروشگاه"><input id="storeLogoFile" type="file" accept="image/*" onchange="loadStoreLogo(event)"></div></div>
   <button class="primary" onclick="saveStoreSettings()">ذخیره مشخصات فروشگاه</button>
  </div>
  <details class="settings-fold"><summary>تعریف نام کاربری و تغییر رمز عبور</summary><div class="fold-body"><div class="field"><label>نام کاربری</label><input id="usernameInput" autocomplete="username" placeholder="نام کاربری"></div><div class="field"><label>رمز عبور فعلی</label><input id="oldPassword" type="password" autocomplete="current-password"></div><div class="field"><label>رمز عبور جدید</label><input id="newPassword" type="password" autocomplete="new-password"></div><div class="field"><label>تکرار رمز جدید</label><input id="confirmPassword" type="password" autocomplete="new-password"></div><button class="primary" onclick="changeCredentials()">ذخیره اطلاعات ورود</button></div></details>
- <div class="section-head"><h2>گزارش سود و زیان</h2></div><div class="card"><p class="hint">محاسبه بر اساس قیمت خرید ثبت‌شده برای کالاها در فاکتورهای فروش است.</p><button class="primary" onclick="renderProfitLoss()">نمایش گزارش سود و زیان</button><div id="profitLossReport" style="margin-top:12px"></div></div><div class="section-head"><h2>پشتیبان‌گیری و بازیابی</h2></div><div class="card"><p class="hint">برای نگهداری اطلاعات فروشگاه، به‌صورت دوره‌ای فایل پشتیبان بگیر.</p><div class="backup-restore-row"><button class="primary" onclick="backupData()">💾 تهیه نسخه پشتیبان</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">♻️ بازیابی اطلاعات</button></div><input id="restoreFile" type="file" accept="application/json,.json" style="display:none" onchange="restoreData(event)"></div><div class="notice">توجه: ورود این نسخه فقط برای پیش‌نمایش است و در مرورگر ذخیره می‌شود؛ برای جلوگیری واقعی از انتقال برنامه به گوشی دیگر، نسخه نهایی باید با فعال‌سازی مجوز، شناسه دستگاه و سرور اعتبارسنجی ساخته شود.</div><div class="section-head"><h2>درباره برنامه و پشتیبانی</h2></div><div class="card about-support-card" id="aboutSupportCard"><div class="about-brand"><span class="about-logo">A</span><div><div class="about-brand-name">AZA</div><div class="about-brand-caption">مدیریت فروش، موجودی کالا و گزارش‌های فروشگاه</div></div></div><div class="about-message"><strong>این نسخه مخصوص همین گوشی می‌باشد.</strong><span>برای دریافت نسخه جدید، لطفاً پیش از به‌روزرسانی با پشتیبانی هماهنگ کنید.</span></div><div class="support-panel settings-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">پشتیبانی و دریافت نسخه جدید</div><div class="support-subtitle">آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div></div>
+ <div class="section-head"><h2>گزارش سود و زیان</h2></div><div class="card"><p class="hint">محاسبه بر اساس قیمت خرید ثبت‌شده برای کالاها در فاکتورهای فروش است.</p><button class="primary" onclick="renderProfitLoss()">نمایش گزارش سود و زیان</button><div id="profitLossReport" style="margin-top:12px"></div></div><div class="section-head"><h2>پشتیبان‌گیری و بازیابی</h2></div><div class="card"><p class="hint">برای نگهداری اطلاعات فروشگاه، به‌صورت دوره‌ای فایل پشتیبان بگیر.</p><div class="backup-restore-row"><button class="primary" onclick="backupData()">💾 تهیه نسخه پشتیبان</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">♻️ بازیابی اطلاعات</button></div><input id="restoreFile" type="file" accept="application/json,.json" style="display:none" onchange="restoreData(event)"></div><div class="notice">توجه: ورود این نسخه فقط برای پیش‌نمایش است و در مرورگر ذخیره می‌شود؛ برای جلوگیری واقعی از انتقال برنامه به گوشی دیگر، نسخه نهایی باید با فعال‌سازی مجوز، شناسه دستگاه و سرور اعتبارسنجی ساخته شود.</div><div class="section-head"><h2>درباره برنامه و پشتیبانی</h2></div><div class="card about-support-card" id="aboutSupportCard"><div class="about-brand"><span class="about-logo">A</span><div><div class="about-brand-name">AZA</div><div class="about-brand-caption">مدیریت کالاها، موجودی و سوابق فروشگاه با AZA</div></div></div><div class="about-message"><strong>این نسخه مخصوص همین گوشی می‌باشد.</strong><span>برای پشتیبانی و دریافت نسخه جدید، لطفاً با آزادمنش تماس بگیرید.</span></div><div class="support-panel settings-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">پشتیبانی و دریافت نسخه جدید</div><div class="support-subtitle">آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div></div>
 </section>
 </main>
 
