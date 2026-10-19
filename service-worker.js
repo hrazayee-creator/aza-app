@@ -1,4 +1,4 @@
-const CACHE_NAME = 'aza-mobile-pwa-v22-6';
+const CACHE_NAME = 'aza-mobile-pwa-v25-1';
 const APP_SHELL = ['./', './index.html', './manifest.json', './aza-192.png', './aza-512.png', './icons/products/bag.webp', './icons/products/shoes.webp', './icons/products/tshirt.webp', './icons/products/shorts.webp', './icons/products/undershirt.webp', './icons/products/perfume.webp', './icons/products/watch.webp', './icons/products/socks.webp', './icons/products/shirt.webp', './icons/products/suit.webp', './icons/products/hoodie.webp', './icons/products/blazer.webp', './icons/products/pants.webp', './icons/products/ring.webp', './icons/products/belt.webp', './icons/products/button.webp'];
 self.addEventListener('install', event => {
   event.waitUntil((async()=>{const cache=await caches.open(CACHE_NAME);await cache.addAll(APP_SHELL);await self.skipWaiting()})());
