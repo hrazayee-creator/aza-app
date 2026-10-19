@@ -109,6 +109,15 @@ dialog{border:0;border-radius:20px;padding:clamp(10px,3vw,16px);width:calc(100% 
   </details>
   <div class="section-head"><h2>دریافتی به تفکیک روش پرداخت</h2><button class="text-btn" onclick="showPage('payments')">مشاهده گزارش ←</button></div>
   <button class="card" id="paymentSummary" onclick="showPage('payments')" style="display:block;width:100%;text-align:right;cursor:pointer;color:inherit"></button>
+  <div class="aza-promo-card" dir="rtl">
+    <div class="aza-promo-mark">AZA</div>
+    <div class="aza-promo-copy">
+      <strong>مدیریت هوشمند فروشگاه شما</strong>
+      <p>ثبت و مدیریت کالاها، رنگ و سایز، موجودی و سوابق فروش؛ ساده و یکپارچه در برنامه AZA.</p>
+      <span>برای پشتیبانی و دریافت نسخه جدید با آزادمنش تماس بگیرید.</span>
+      <a href="tel:09372301428" dir="ltr">09372301428</a>
+    </div>
+  </div>
 
 </section>
 
@@ -144,6 +153,18 @@ dialog{border:0;border-radius:20px;padding:clamp(10px,3vw,16px);width:calc(100% 
 <section class="page" id="payments"><div class="welcome"><div><h1>گزارش دریافتی</h1><p>مبالغ دریافتی امروز و این ماه به تفکیک روش پرداخت</p></div></div><div class="section-head"><h2>دریافتی امروز</h2></div><div class="card" id="paymentTodayDetail"></div><div class="section-head"><h2>دریافتی این ماه</h2></div><div class="card" id="paymentMonthDetail"></div><button class="outline" onclick="showPage('dashboard')">بازگشت به داشبورد</button></section>
 <section class="page" id="settings">
  <div class="welcome"><div><h1>تنظیمات</h1><p>مشخصات فروشگاه و امنیت ورود</p></div></div>
+ <div class="section-head"><h2>درباره برنامه و پشتیبانی</h2></div>
+ <div class="aza-promo-card settings-promo" dir="rtl">
+  <div class="aza-promo-mark">AZA</div>
+  <div class="aza-promo-copy">
+   <strong>همه امور فروشگاه، در یک برنامه</strong>
+   <p>AZA برای مدیریت کالاها، رنگ و سایز، موجودی و سوابق فروش طراحی شده است. اطلاعات فروشگاه روی همین گوشی ذخیره می‌شود.</p>
+   <span>برای پشتیبانی و دریافت نسخه جدید لطفاً با شماره زیر تماس بگیرید.</span>
+   <b>آزادمنش</b>
+   <a href="tel:09372301428" dir="ltr">09372301428</a>
+  </div>
+ </div>
+ 
  <div class="card">
   <div class="field"><label>نام فروشگاه</label><input id="storeNameInput" placeholder="نام فروشگاه شما"></div><div class="formrow"><div class="field"><label>آدرس فروشگاه</label><input id="storeAddressInput" placeholder="آدرس فروشگاه"></div><div class="field"><label>موبایل فروشگاه</label><input id="storePhoneInput" type="tel" inputmode="tel" placeholder="شماره موبایل"></div></div>
   <div class="field"><label>لوگوی فروشگاه</label><div style="display:flex;align-items:center;gap:12px"><img class="settings-logo" id="storeLogoPreview" alt="لوگوی فروشگاه"><input id="storeLogoFile" type="file" accept="image/*" onchange="loadStoreLogo(event)"></div></div>
@@ -214,7 +235,10 @@ function openAzaDB(){return new Promise((resolve,reject)=>{if(!('indexedDB' in w
 async function azaDbRead(){const db=await openAzaDB();return new Promise((resolve,reject)=>{const tx=db.transaction('appState','readonly'),req=tx.objectStore('appState').get('main');req.onsuccess=()=>{db.close();resolve(req.result||null)};req.onerror=()=>{db.close();reject(req.error)}})}
 async function azaDbWrite(state){const db=await openAzaDB();return new Promise((resolve,reject)=>{const tx=db.transaction('appState','readwrite');tx.objectStore('appState').put(state,'main');tx.oncomplete=()=>{db.close();resolve(true)};tx.onerror=tx.onabort=()=>{db.close();reject(tx.error||new Error('ذخیره اطلاعات ناموفق بود'))}})}
 function azaCurrentState(){return {schemaVersion:1,savedAt:new Date().toISOString(),products,invoices,debts,settlementReceipts,storeSettings,credentials}}
-function persist(){azaDbWrite(azaCurrentState()).catch(()=>toast('ذخیره در پایگاه داده گوشی انجام نشد؛ فوراً از بخش پشتیبان‌گیری خروجی بگیر.'))}
+const AZA_AUTO_BACKUP_KEY='aza_mobile_auto_backup_v1';
+function writeAzaAutoBackup(state){try{const snapshot={...state,autoBackupAt:new Date().toISOString()};localStorage.setItem(AZA_AUTO_BACKUP_KEY,JSON.stringify(snapshot));return true}catch(err){console.warn('AZA local auto-backup could not be written',err);return false}}
+function readAzaAutoBackup(){try{const raw=localStorage.getItem(AZA_AUTO_BACKUP_KEY);if(!raw)return null;const d=JSON.parse(raw);return Array.isArray(d.products)&&Array.isArray(d.invoices)?d:null}catch(err){return null}}
+function persist(){const state=azaCurrentState();writeAzaAutoBackup(state);azaDbWrite(state).catch(()=>toast('ذخیره در پایگاه داده گوشی انجام نشد؛ از بخش پشتیبان‌گیری فایل جداگانه بگیر.'))}
 function digitsOnly(v){return String(v||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9]/g,'')}
 function formatMoneyInput(el){const raw=digitsOnly(el.value);el.value=raw?new Intl.NumberFormat('en-US').format(Number(raw)).replace(/,/g,'٬'):''}
 function parseMoney(id){return Number(digitsOnly(document.getElementById(id)?.value))||0}
@@ -415,6 +439,15 @@ dialog{border:0;border-radius:20px;padding:clamp(10px,3vw,16px);width:calc(100% 
 }
 function invoiceStandaloneHtml(){const paper=document.getElementById('invoicePreview');const css=`*{box-sizing:border-box}body{margin:0;padding:12px;background:#fff;color:#111;font-family:Tahoma,Arial,sans-serif;direction:rtl}.invoice-paper{display:block;width:100%;max-width:720px;margin:0 auto;padding:18px;border:1px solid #dce4f0;border-radius:16px;background:#fff;color:#111}.invoice-paper .inv-head{text-align:center;border-bottom:2px solid #172b4d;padding:8px 0 16px;margin-bottom:10px}.invoice-paper .inv-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(85px,28%);gap:12px;padding:10px 12px;border-bottom:1px solid #edf0f4;direction:rtl}.invoice-paper .inv-row:nth-child(even){background:#f8fafc}.invoice-paper .inv-total{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid #edf0f4}.invoice-paper .inv-final{font-size:18px;font-weight:900;margin-top:7px;padding:12px;background:#edf4ff;border-radius:10px}.invoice-paper .inv-foot{border-top:1px solid #e5e7eb;margin-top:18px;padding-top:12px;text-align:center;line-height:2;font-size:12px}@page{size:auto;margin:8mm}@media print{body{padding:0}.invoice-paper{border:0;border-radius:0;max-width:none;padding:0}}`;return `<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>فاکتور AZA</title><style>${css}
 #recentProducts.dashboard-product-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:8px}#recentProducts.dashboard-product-grid>.product{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0;padding:6px 4px;border:1px solid var(--line);border-radius:12px;background:#fff}#recentProducts.dashboard-product-grid .pdetails{width:100%;min-width:0}#recentProducts.dashboard-product-grid .pdetails b{display:block;overflow-wrap:anywhere}#recentProducts.dashboard-product-grid .price{width:100%;text-align:right;margin:0}#recentProducts.dashboard-product-grid .price small{display:block}
+ 
+.aza-promo-card{display:flex;align-items:flex-start;gap:13px;margin:16px 0;padding:16px;border:1px solid var(--line,#dce3ed);border-radius:16px;background:linear-gradient(135deg,rgba(42,91,160,.08),rgba(42,91,160,.025));text-align:right}
+.aza-promo-mark{display:flex;align-items:center;justify-content:center;flex:0 0 48px;height:48px;border-radius:14px;background:#203e68;color:#fff;font-weight:900;font-size:17px;letter-spacing:.5px}
+.aza-promo-copy{display:flex;flex:1;min-width:0;flex-direction:column;align-items:flex-start;gap:6px}
+.aza-promo-copy strong{font-size:15px;font-weight:900;color:var(--text,#172b4d)}
+.aza-promo-copy p{margin:0;font-size:13px;line-height:1.9;color:var(--muted,#65758b)}
+.aza-promo-copy span{font-size:12px;line-height:1.8;color:var(--muted,#65758b)}
+.aza-promo-copy a{display:inline-block;margin-top:2px;font-weight:900;font-size:16px;color:var(--primary,#244d82);text-decoration:none}
+.aza-promo-copy b{font-size:13px;color:var(--text,#172b4d)}
 </style></head><body><div class="invoice-paper">${paper.innerHTML}</div></body></html>`}
 function saveInvoiceImage(){const inv=invoices.find(x=>x.id===currentInvoiceId),paper=document.getElementById('invoicePreview');if(!inv||!paper||!paper.innerHTML.trim()){toast('ابتدا یک فاکتور باز کن.');return}const blob=new Blob([invoiceStandaloneHtml()],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`AZA-invoice-${invoiceDisplayNo(inv)}.html`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);toast('فاکتور با همان طراحی ذخیره شد؛ فایل را باز کن و چاپ یا PDF بگیر.')}
 function shareInvoice(){const inv=invoices.find(x=>x.id===currentInvoiceId),paper=document.getElementById('invoicePreview');if(!inv||!paper||!paper.innerHTML.trim()){toast('ابتدا یک فاکتور باز کن.');return}document.getElementById('shareChoiceDialog').showModal()}
@@ -449,9 +482,19 @@ async function initializeAzaPWA(){
      products=saved.products;invoices=saved.invoices;debts=Array.isArray(saved.debts)?saved.debts:[];settlementReceipts=Array.isArray(saved.settlementReceipts)?saved.settlementReceipts:[];
      if(saved.storeSettings)storeSettings=saved.storeSettings;if(saved.credentials)credentials=saved.credentials;
    }else{
-     // First launch: migrate the legacy localStorage values into IndexedDB once.
-     await azaDbWrite(azaCurrentState());
+     // If IndexedDB is unexpectedly empty, recover from the redundant on-device snapshot before migrating legacy data.
+     const autoBackup=readAzaAutoBackup();
+     if(autoBackup){
+       products=autoBackup.products;invoices=autoBackup.invoices;debts=Array.isArray(autoBackup.debts)?autoBackup.debts:[];settlementReceipts=Array.isArray(autoBackup.settlementReceipts)?autoBackup.settlementReceipts:[];
+       if(autoBackup.storeSettings)storeSettings=autoBackup.storeSettings;if(autoBackup.credentials)credentials=autoBackup.credentials;
+       await azaDbWrite(azaCurrentState());
+     }else{
+       // First launch: migrate the legacy localStorage values into IndexedDB once.
+       await azaDbWrite(azaCurrentState());
+     }
    }
+   // Refresh the on-device safety snapshot after the saved database has been loaded.
+   writeAzaAutoBackup(azaCurrentState());
    document.getElementById('todayDate').innerHTML='امروز<br>'+new Date().toLocaleDateString('fa-IR');
    document.getElementById('storeTitle').textContent=storeSettings.name||'مدیریت فروشگاه شما';
    if(storeSettings.logo)document.getElementById('headerLogo').innerHTML=`<img src="${storeSettings.logo}" style="width:100%;height:100%;object-fit:cover;border-radius:11px" alt="لوگو">`;
