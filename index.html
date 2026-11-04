@@ -119,7 +119,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8b
 <body>
 <div id="storageBoot"><div class="boot-card"><div class="boot-logo">AZA</div><h2 style="margin:0 0 8px">AZA</h2><p style="margin:0;line-height:1.9">در حال آماده‌سازی اطلاعات ذخیره‌شده روی گوشی…</p></div></div>
 <div id="updateBanner" class="update-banner"><span>نسخه جدید AZA آماده است.</span><button type="button" onclick="location.reload()">بارگذاری نسخه جدید</button></div>
-<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p><div class="login-promo"><strong>فروش و موجودی، همه یک‌جا.</strong></div></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود</button><p class="hint" style="margin-top:12px">ورود اولیه پیش‌نمایش: admin / 1234</p><div class="support-panel login-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">پشتیبانی و دریافت نسخه جدید</div><div class="support-subtitle">تماس مستقیم با آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div><div class="login-developer">طراحی و توسعه توسط <strong>آزادمنش</strong></div></form></div>
+<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p><div class="login-promo"><strong>فروش و موجودی، همه یک‌جا.</strong></div></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود با رمز عبور</button><button class="secondary" type="button" id="biometricLoginBtn" onclick="loginWithBiometric()" style="width:100%;margin-top:9px;display:none">ورود با اثر انگشت / قفل دستگاه</button><button class="text-btn" type="button" onclick="enableBiometricLogin()" style="width:100%;margin-top:8px">فعال‌سازی ورود با اثر انگشت</button><p class="hint" style="margin-top:12px">برای فعال‌سازی، ابتدا نام کاربری و رمز عبور را وارد کن.</p><div class="support-panel login-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">پشتیبانی و دریافت نسخه جدید</div><div class="support-subtitle">تماس مستقیم با آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div><div class="login-developer">طراحی و توسعه توسط <strong>آزادمنش</strong></div></form></div>
 <header class="appbar">
   <div class="brand"><div class="logo" id="headerLogo">A</div><div class="aza-brandword"><strong>AZA</strong><small id="storeTitle">مدیریت فروشگاه شما</small></div></div>
   <div style="display:flex;align-items:center;gap:8px"><div class="offline">● حالت آفلاین</div><button class="logout-btn" type="button" onclick="logoutApp()">خروج</button></div>
@@ -407,7 +407,72 @@ function startVoiceSale(){
  voiceRecognition.onerror=()=>{voiceActive=false;if(btn)btn.textContent='🎙️ ثبت با دستیار صوتی';toast('دستیار صوتی فعال نشد؛ مجوز میکروفون و اتصال مرورگر را بررسی کن.')};voiceRecognition.onend=()=>{voiceActive=false;if(btn)btn.textContent='🎙️ ثبت با دستیار صوتی'};
  try{voiceRecognition.start();toast('نام کالا را بگو؛ سپس بگو «ثبت فاکتور». برای توقف بگو «توقف».')}catch(e){voiceActive=false;if(btn)btn.textContent='🎙️ ثبت با دستیار صوتی';toast('اجازه میکروفون را بررسی کن و دوباره امتحان کن.')}
 }
-async function doLogin(e){e.preventDefault();const u=document.getElementById('loginUsername').value,p=document.getElementById('loginPassword').value,remember=document.getElementById('rememberLogin').checked;if(u===credentials.username&&p===credentials.password){if(remember){localStorage.setItem('aza_remember_login',JSON.stringify({username:u,password:p,remember:true}));}else localStorage.removeItem('aza_remember_login');try{await azaDbWrite(azaCurrentState());await createAutoBackup('login')}catch(err){console.error('Automatic local backup failed',err);toast('ورود انجام می‌شود، اما پشتیبان خودکار ساخته نشد؛ فضای ذخیره‌سازی را بررسی کن.')}document.getElementById('loginScreen').style.display='none';return false}alert('نام کاربری یا رمز عبور اشتباه است.');return false}
+function azaB64Url(bytes){let s='';for(const b of new Uint8Array(bytes))s+=String.fromCharCode(b);return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+function azaFromB64Url(value){const s=String(value).replace(/-/g,'+').replace(/_/g,'/');const padded=s+'='.repeat((4-s.length%4)%4);const raw=atob(padded);return Uint8Array.from(raw,c=>c.charCodeAt(0))}
+function biometricSupported(){return window.isSecureContext&&!!(window.PublicKeyCredential&&navigator.credentials)}
+async function requestPersistentStorage(){
+ try{
+  if(!navigator.storage||!navigator.storage.persist)return false;
+  const already=await navigator.storage.persisted();
+  if(already)return true;
+  return await navigator.storage.persist();
+ }catch(e){console.warn('Persistent storage request unavailable',e);return false}
+}
+async function finishAzaLogin(){
+ try{await azaDbWrite(azaCurrentState());await createAutoBackup('login')}catch(err){console.error('Automatic local backup failed',err);toast('ورود انجام می‌شود، اما پشتیبان خودکار ساخته نشد؛ از اطلاعات خروجی پشتیبان بگیر.')}
+ requestPersistentStorage().then(ok=>{if(!ok)console.info('Browser did not grant persistent storage; keep external JSON backups.')});
+ document.getElementById('loginScreen').style.display='none';
+}
+async function enableBiometricLogin(){
+ const u=document.getElementById('loginUsername').value.trim(),p=document.getElementById('loginPassword').value;
+ if(u!==credentials.username||p!==credentials.password){alert('برای فعال‌سازی، نام کاربری و رمز عبور فعلی را درست وارد کن.');return}
+ if(!biometricSupported()){alert('این مرورگر یا آدرس از ورود زیست‌سنجی پشتیبانی نمی‌کند. برنامه را با Chrome و لینک HTTPS باز کن.');return}
+ if(!window.crypto||!crypto.getRandomValues){alert('امکان ساخت کلید امن در این دستگاه وجود ندارد.');return}
+ try{
+  const challenge=crypto.getRandomValues(new Uint8Array(32));
+  const userId=crypto.getRandomValues(new Uint8Array(16));
+  const credential=await navigator.credentials.create({publicKey:{
+   challenge,rp:{name:'AZA',id:location.hostname},
+   user:{id:userId,name:u,displayName:'AZA Store'},
+   pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],
+   authenticatorSelection:{authenticatorAttachment:'platform',residentKey:'preferred',userVerification:'required'},
+   timeout:60000,attestation:'none'
+  }});
+  if(!credential)throw new Error('ثبت اثر انگشت انجام نشد');
+  localStorage.setItem('aza_biometric_credential',azaB64Url(credential.rawId));
+  localStorage.setItem('aza_biometric_user',u);
+  await azaDbWrite(azaCurrentState());
+  const btn=document.getElementById('biometricLoginBtn');if(btn)btn.style.display='block';
+  toast('ورود با اثر انگشت یا قفل صفحه این دستگاه فعال شد.');
+  await finishAzaLogin();
+ }catch(err){console.error('Biometric enrollment failed',err);alert('فعال‌سازی انجام نشد. قفل صفحه گوشی و مجوز اثر انگشت را بررسی کن؛ در صورت پشتیبانی‌نشدن، با رمز عبور وارد شو.')}
+}
+async function loginWithBiometric(){
+ const savedId=localStorage.getItem('aza_biometric_credential');
+ if(!savedId||!biometricSupported()){alert('ورود با اثر انگشت فعال نیست یا این مرورگر پشتیبانی نمی‌کند.');return}
+ try{
+  const credential=await navigator.credentials.get({publicKey:{
+   challenge:crypto.getRandomValues(new Uint8Array(32)),
+   rpId:location.hostname,
+   allowCredentials:[{type:'public-key',id:azaFromB64Url(savedId)}],
+   userVerification:'required',timeout:60000
+  }});
+  if(!credential||azaB64Url(credential.rawId)!==savedId)throw new Error('Credential mismatch');
+  const biometricUser=localStorage.getItem('aza_biometric_user');
+  if(biometricUser&&biometricUser!==credentials.username)throw new Error('Account mismatch');
+  await finishAzaLogin();
+ }catch(err){console.error('Biometric login failed',err);alert('تأیید اثر انگشت انجام نشد. دوباره تلاش کن یا با رمز عبور وارد شو.')}
+}
+async function doLogin(e){
+ e.preventDefault();
+ const u=document.getElementById('loginUsername').value,p=document.getElementById('loginPassword').value,remember=document.getElementById('rememberLogin').checked;
+ if(u===credentials.username&&p===credentials.password){
+  if(remember)localStorage.setItem('aza_remember_login',JSON.stringify({username:u,password:p,remember:true}));
+  else localStorage.removeItem('aza_remember_login');
+  await finishAzaLogin();return false;
+ }
+ alert('نام کاربری یا رمز عبور اشتباه است.');return false;
+}
 function logoutApp(){if(!confirm('از برنامه خارج شوی؟'))return;document.getElementById('loginScreen').style.display='flex';document.getElementById('loginPassword').value='';document.getElementById('loginUsername').value='';try{const saved=JSON.parse(localStorage.getItem('aza_remember_login')||'null');if(saved?.remember){document.getElementById('loginUsername').value=saved.username||'';document.getElementById('loginPassword').value=saved.password||'';document.getElementById('rememberLogin').checked=true}}catch(e){}}
 try{const remembered=JSON.parse(localStorage.getItem('aza_remember_login')||'null');if(remembered?.remember){document.getElementById('loginUsername').value=remembered.username||'';document.getElementById('loginPassword').value=remembered.password||'';document.getElementById('rememberLogin').checked=true}}catch(e){}
 function openSettings(){document.getElementById('storeNameInput').value=storeSettings.name||'';document.getElementById('storeAddressInput').value=storeSettings.address||'';document.getElementById('storePhoneInput').value=storeSettings.phone||'';document.getElementById('usernameInput').value=credentials.username||'admin';document.getElementById('storeLogoPreview').src=storeSettings.logo||'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="14" fill="%23eaf0ff"/%3E%3Ctext x="32" y="39" font-size="19" font-family="Arial" font-weight="bold" text-anchor="middle" fill="%23172b4d"%3EA%3C/text%3E%3C/svg%3E';showPage('settings')}
@@ -498,6 +563,7 @@ async function initializeAzaPWA(){
    document.getElementById('storeTitle').textContent=storeSettings.name||'مدیریت فروشگاه شما';
    if(storeSettings.logo)document.getElementById('headerLogo').innerHTML=`<img src="${storeSettings.logo}" style="width:100%;height:100%;object-fit:cover;border-radius:11px" alt="لوگو">`;
    loadDashboardProductColumns();updateDashboard();renderProducts();renderSaleProducts();renderCart();renderInvoices();refreshAutoBackupStatus();
+   const biometricBtn=document.getElementById('biometricLoginBtn');if(biometricBtn&&localStorage.getItem('aza_biometric_credential')&&biometricSupported())biometricBtn.style.display='block';
  }catch(err){
    console.error('AZA local database error',err);
    boot.innerHTML='<div class="boot-card"><div class="boot-logo">AZA</div><h2>خطا در ذخیره‌سازی</h2><p style="line-height:1.9">مرورگر نتوانست پایگاه داده محلی را باز کند. از مرورگر به‌روز استفاده کن و اطلاعات سایت را پاک نکن.</p><button class="primary" onclick="location.reload()">تلاش دوباره</button></div>';
