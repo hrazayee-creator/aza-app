@@ -1,4 +1,4 @@
-const CACHE_NAME = 'aza-mobile-pwa-v26-1';
+const CACHE_NAME = 'aza-mobile-pwa-v26-2';
 const APP_SHELL = ['./', './index.html', './manifest.json'];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
