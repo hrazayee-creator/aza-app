@@ -119,7 +119,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8b
 <body>
 <div id="storageBoot"><div class="boot-card"><div class="boot-logo">AZA</div><h2 style="margin:0 0 8px">AZA</h2><p style="margin:0;line-height:1.9">در حال آماده‌سازی اطلاعات ذخیره‌شده روی گوشی…</p></div></div>
 <div id="updateBanner" class="update-banner"><span>نسخه جدید AZA آماده است.</span><button type="button" onclick="location.reload()">بارگذاری نسخه جدید</button></div>
-<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p><div class="login-promo"><strong>فروش و موجودی، همه یک‌جا.</strong></div></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود با رمز عبور</button><button class="secondary" type="button" id="biometricLoginBtn" onclick="loginWithBiometric()" style="width:100%;margin-top:9px;display:none">ورود با اثر انگشت / قفل دستگاه</button><button class="text-btn" type="button" onclick="enableBiometricLogin()" style="width:100%;margin-top:8px">فعال‌سازی ورود با اثر انگشت</button><p class="hint" style="margin-top:12px">برای فعال‌سازی، ابتدا نام کاربری و رمز عبور را وارد کن.</p><div class="support-panel login-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">پشتیبانی و دریافت نسخه جدید</div><div class="support-subtitle">تماس مستقیم با آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div><div class="login-developer">طراحی و توسعه توسط <strong>آزادمنش</strong></div></form></div>
+<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p><div class="login-promo"><strong>فروش و موجودی، همه یک‌جا.</strong></div></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود با رمز عبور</button><button class="secondary" type="button" id="biometricLoginBtn" onclick="loginWithBiometric()" style="width:100%;margin-top:9px;display:none">ورود با اثر انگشت / قفل دستگاه</button><button class="text-btn" type="button" onclick="enableBiometricLogin()" style="width:100%;margin-top:8px">فعال‌سازی ورود با اثر انگشت</button><button class="secondary" type="button" onclick="recoverLogin()" style="width:100%;margin-top:9px">بازیابی نام کاربری و رمز عبور</button><p class="hint" style="margin-top:12px">برای فعال‌سازی، ابتدا نام کاربری و رمز عبور را وارد کن.</p><div class="support-panel login-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">پشتیبانی و دریافت نسخه جدید</div><div class="support-subtitle">تماس مستقیم با آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div><div class="login-developer">طراحی و توسعه توسط <strong>آزادمنش</strong></div></form></div>
 <header class="appbar">
   <div class="brand"><div class="logo" id="headerLogo">A</div><div class="aza-brandword"><strong>AZA</strong><small id="storeTitle">مدیریت فروشگاه شما</small></div></div>
   <div style="display:flex;align-items:center;gap:8px"><div class="offline">● حالت آفلاین</div><button class="logout-btn" type="button" onclick="logoutApp()">خروج</button></div>
@@ -418,6 +418,18 @@ async function requestPersistentStorage(){
   return await navigator.storage.persist();
  }catch(e){console.warn('Persistent storage request unavailable',e);return false}
 }
+async function recoverLogin(){
+ if(!confirm('نام کاربری و رمز عبور فقط به حالت پیش‌فرض برگردد؟ اطلاعات کالاها، فاکتورها و بدهی‌ها حفظ می‌شوند. این کار برای هرکسی که به گوشی دسترسی دارد امکان‌پذیر است.'))return;
+ try{
+  credentials={username:'admin',password:'1234'};
+  await azaDbWrite(azaCurrentState());
+  try{localStorage.setItem('aza_preview_auth',JSON.stringify(credentials));localStorage.removeItem('aza_remember_login');}catch(e){}
+  document.getElementById('loginUsername').value='admin';
+  document.getElementById('loginPassword').value='';
+  alert('اطلاعات ورود بازیابی شد. نام کاربری: admin و رمز عبور: 1234');
+ }catch(err){console.error('AZA credential recovery failed',err);alert('بازیابی انجام نشد. اطلاعات برنامه تغییر نکرد. دوباره تلاش کن.');}
+}
+
 async function finishAzaLogin(){
  try{await azaDbWrite(azaCurrentState());await createAutoBackup('login')}catch(err){console.error('Automatic local backup failed',err);toast('ورود انجام می‌شود، اما پشتیبان خودکار ساخته نشد؛ از اطلاعات خروجی پشتیبان بگیر.')}
  requestPersistentStorage().then(ok=>{if(!ok)console.info('Browser did not grant persistent storage; keep external JSON backups.')});
