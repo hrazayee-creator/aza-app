@@ -149,7 +149,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8b
 <body>
 <div id="storageBoot"><div class="boot-card"><div class="boot-logo">AZA</div><h2 style="margin:0 0 8px">AZA</h2><p style="margin:0;line-height:1.9">در حال آماده‌سازی اطلاعات ذخیره‌شده روی گوشی…</p></div></div>
 <div id="updateBanner" class="update-banner"><span>نسخه جدید AZA آماده است.</span><button type="button" onclick="location.reload()">بارگذاری نسخه جدید</button></div>
-<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود با رمز عبور</button><div class="login-actions"><button class="secondary compact-action" type="button" id="biometricLoginBtn" onclick="loginWithBiometric()" style="display:none">ورود با قفل دستگاه</button><button class="text-btn compact-action" type="button" onclick="enableBiometricLogin()">ثبت اثر انگشت</button><button class="text-btn compact-action" type="button" onclick="recoverLogin()">بازیابی رمز</button></div><p class="hint login-hint">برای فعال‌سازی قفل دستگاه، ابتدا با رمز عبور وارد شو.</p><div class="support-panel login-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">ارتباط با ما</div><div class="support-subtitle">تماس مستقیم با آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div><div class="login-developer">طراحی و توسعه توسط <strong>آزادمنش</strong></div></form></div>
+<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود با رمز عبور</button><div class="login-actions"><button class="secondary compact-action biometric-icon-btn" type="button" id="biometricLoginBtn" onclick="loginWithBiometric()" style="display:none" aria-label="ورود با اثر انگشت" title="ورود با اثر انگشت"> <span aria-hidden="true">◉</span> </button><button class="text-btn compact-action" type="button" onclick="recoverLogin()">بازیابی رمز</button></div><p class="hint login-hint">برای فعال‌سازی قفل دستگاه، ابتدا با رمز عبور وارد شو.</p><div class="support-panel login-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">ارتباط با ما</div><div class="support-subtitle">تماس مستقیم با آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div><div class="login-developer">طراحی و توسعه توسط <strong>آزادمنش</strong></div></form></div>
 <header class="appbar">
   <div class="brand"><div class="logo" id="headerLogo">A</div><div class="aza-brandword"><strong>AZA</strong><small id="storeTitle">مدیریت فروشگاه شما</small></div></div>
   <div style="display:flex;align-items:center;gap:8px"><div class="offline">● حالت آفلاین</div><button class="logout-btn" type="button" onclick="logoutApp()">خروج</button></div>
@@ -207,7 +207,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8b
 <section class="page" id="settings">
  <div class="welcome"><div><h1>تنظیمات</h1><p>برای خلوت ماندن صفحه، هر بخش را باز کن.</p></div></div>
  <details class="settings-fold"><summary>🏪 مشخصات فروشگاه</summary><div class="fold-body"><div class="field"><label>نام فروشگاه</label><input id="storeNameInput" placeholder="نام فروشگاه شما"></div><div class="formrow"><div class="field"><label>آدرس فروشگاه</label><input id="storeAddressInput" placeholder="آدرس فروشگاه"></div><div class="field"><label>موبایل فروشگاه</label><input id="storePhoneInput" type="tel" inputmode="tel" placeholder="شماره موبایل"></div></div><div class="field"><label>لوگوی فروشگاه</label><div style="display:flex;align-items:center;gap:12px"><img class="settings-logo" id="storeLogoPreview" alt="لوگوی فروشگاه"><input id="storeLogoFile" type="file" accept="image/*" onchange="loadStoreLogo(event)"></div></div><button class="primary" onclick="saveStoreSettings()">ذخیره مشخصات فروشگاه</button></div></details>
- <details class="settings-fold"><summary>🔐 نام کاربری و تغییر رمز عبور</summary><div class="fold-body"><div class="field"><label>نام کاربری</label><input id="usernameInput" autocomplete="username" placeholder="نام کاربری"></div><div class="field"><label>رمز عبور فعلی</label><input id="oldPassword" type="password" autocomplete="current-password"></div><div class="field"><label>رمز عبور جدید</label><input id="newPassword" type="password" autocomplete="new-password"></div><div class="field"><label>تکرار رمز جدید</label><input id="confirmPassword" type="password" autocomplete="new-password"></div><button class="primary" onclick="changeCredentials()">ذخیره اطلاعات ورود</button></div></details>
+ <details class="settings-fold"><summary>🔐 نام کاربری و تغییر رمز عبور</summary><div class="fold-body"><div class="field"><label>نام کاربری</label><input id="usernameInput" autocomplete="username" placeholder="نام کاربری"></div><div class="field"><label>رمز عبور فعلی</label><input id="oldPassword" type="password" autocomplete="current-password"></div><div class="field"><label>رمز عبور جدید</label><input id="newPassword" type="password" autocomplete="new-password"></div><div class="field"><label>تکرار رمز جدید</label><input id="confirmPassword" type="password" autocomplete="new-password"></div><button class="primary" onclick="changeCredentials()">ذخیره اطلاعات ورود</button><div class="biometric-settings-row"><p class="hint">برای ورود سریع، اثر انگشت یا قفل صفحه گوشی را ثبت کن.</p><button class="secondary compact-action" type="button" onclick="enableBiometricLogin()">ثبت اثر انگشت</button></div></div></details>
  <details class="settings-fold"><summary>🏷️ تعریف و چاپ لیبل کالا</summary><div class="fold-body">
  
  <div class="card"><div class="field"><label>انتخاب کالا</label><select id="labelProduct" onchange="previewLabel()" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:white"></select></div>
@@ -471,18 +471,48 @@ async function requestPersistentStorage(){
 }
 async function recoverLogin(){
  if(!azaStorageReady){alert('پایگاه داده هنوز آماده نیست؛ برنامه را یک‌بار تازه‌سازی کن و دوباره تلاش کن.');return}
- if(!confirm('فقط نام کاربری و رمز عبور به حالت پیش‌فرض برگردد؟ قبل از تغییر، یک پشتیبان از اطلاعات فعلی ساخته می‌شود.'))return;
+ if(!confirm('فقط نام کاربری و رمز عبور به حالت پیش‌فرض برگردد؟ اطلاعات فروشگاه، لوگو، کالاها و فاکتورها حفظ می‌شوند. قبل از تغییر، پشتیبان ساخته می‌شود.'))return;
  try{
   const saved=await azaDbRead();
   if(!azaIsValidState(saved))throw new Error('Stored app state is missing; refusing to overwrite it.');
   await createAutoBackup('before-password-reset');
-  const next={...saved,credentials:{username:'admin',password:'1234'},savedAt:new Date().toISOString()};
+
+  // Recover store identity from the current state first, then legacy localStorage,
+  // then the newest retained automatic backup. Never replace valid store data with defaults.
+  let localStore=null;
+  try{localStore=JSON.parse(localStorage.getItem('aza_preview_store')||'null')}catch(e){}
+  let backupStore=null;
+  try{
+   const rows=await getAutoBackups();
+   const candidate=rows.find(r=>r.value&&r.value.storeSettings&&typeof r.value.storeSettings==='object'&&
+     (r.value.storeSettings.name||r.value.storeSettings.logo));
+   if(candidate)backupStore=candidate.value.storeSettings;
+  }catch(e){console.warn('Could not inspect store settings backups',e)}
+  const currentStore=saved.storeSettings&&typeof saved.storeSettings==='object'?saved.storeSettings:{};
+  const choose=(key,fallback)=>currentStore[key]!==undefined&&currentStore[key]!==null&&currentStore[key]!==''?currentStore[key]:
+    (localStore&&localStore[key]!==undefined&&localStore[key]!==null&&localStore[key]!==''?localStore[key]:
+    (backupStore&&backupStore[key]!==undefined&&backupStore[key]!==null&&backupStore[key]!==''?backupStore[key]:fallback));
+  const preservedStore={
+   ...currentStore,
+   name:choose('name','فروشگاه شما'),
+   logo:choose('logo',''),
+   address:choose('address',''),
+   phone:choose('phone','')
+  };
+  const next={...saved,storeSettings:preservedStore,credentials:{username:'admin',password:'1234'},savedAt:new Date().toISOString()};
   await azaDbWrite(next);
   credentials=next.credentials;
-  try{localStorage.setItem('aza_preview_auth',JSON.stringify(credentials));localStorage.removeItem('aza_remember_login');}catch(e){}
+  storeSettings=preservedStore;
+  try{
+   localStorage.setItem('aza_preview_auth',JSON.stringify(credentials));
+   localStorage.setItem('aza_preview_store',JSON.stringify(storeSettings));
+   localStorage.removeItem('aza_remember_login');
+  }catch(e){console.warn('Legacy settings sync skipped',e)}
   document.getElementById('loginUsername').value='admin';document.getElementById('loginPassword').value='';
-  alert('اطلاعات ورود بازیابی شد. کالاها، فاکتورها و بدهی‌ها از پایگاه داده موجود حفظ شدند. نام کاربری: admin و رمز عبور: 1234');
- }catch(err){console.error('AZA credential recovery failed',err);alert('بازیابی انجام نشد. برای جلوگیری از پاک‌شدن اطلاعات، هیچ داده‌ای بازنویسی نشد.');}
+  document.getElementById('storeTitle').textContent=storeSettings.name||'مدیریت فروشگاه شما';
+  if(storeSettings.logo)document.getElementById('headerLogo').innerHTML=`<img src="${storeSettings.logo}" style="width:100%;height:100%;object-fit:cover;border-radius:11px" alt="لوگو">`;
+  alert('نام کاربری و رمز عبور بازیابی شد. مشخصات و لوگوی فروشگاه، کالاها، فاکتورها و بدهی‌ها حفظ شدند. نام کاربری: admin و رمز عبور: 1234');
+ }catch(err){console.error('AZA credential recovery failed',err);alert('بازیابی انجام نشد. برای جلوگیری از پاک‌شدن اطلاعات، هیچ داده‌ای بازنویسی نشد.')}
 }
 
 async function finishAzaLogin(){
@@ -608,6 +638,8 @@ dialog{border:0;border-radius:20px;padding:clamp(10px,3vw,16px);width:calc(100% 
 }
 function invoiceStandaloneHtml(){const paper=document.getElementById('invoicePreview');const css=`*{box-sizing:border-box}body{margin:0;padding:12px;background:#fff;color:#111;font-family:Tahoma,Arial,sans-serif;direction:rtl}.invoice-paper{display:block;width:100%;max-width:720px;margin:0 auto;padding:18px;border:1px solid #dce4f0;border-radius:16px;background:#fff;color:#111}.invoice-paper .inv-head{text-align:center;border-bottom:2px solid #172b4d;padding:8px 0 16px;margin-bottom:10px}.invoice-paper .inv-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(85px,28%);gap:12px;padding:10px 12px;border-bottom:1px solid #edf0f4;direction:rtl}.invoice-paper .inv-row:nth-child(even){background:#f8fafc}.invoice-paper .inv-total{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid #edf0f4}.invoice-paper .inv-final{font-size:18px;font-weight:900;margin-top:7px;padding:12px;background:#edf4ff;border-radius:10px}.invoice-paper .inv-foot{border-top:1px solid #e5e7eb;margin-top:18px;padding-top:12px;text-align:center;line-height:2;font-size:12px}@page{size:auto;margin:8mm}@media print{body{padding:0}.invoice-paper{border:0;border-radius:0;max-width:none;padding:0}}`;return `<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>فاکتور AZA</title><style>${css}
 #recentProducts.dashboard-product-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:8px}#recentProducts.dashboard-product-grid>.product{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0;padding:6px 4px;border:1px solid var(--line);border-radius:12px;background:#fff}#recentProducts.dashboard-product-grid .pdetails{width:100%;min-width:0}#recentProducts.dashboard-product-grid .pdetails b{display:block;overflow-wrap:anywhere}#recentProducts.dashboard-product-grid .price{width:100%;text-align:right;margin:0}#recentProducts.dashboard-product-grid .price small{display:block}
+
+.biometric-icon-btn{width:42px;min-width:42px;height:42px;padding:0;border-radius:50%;font-size:22px;display:inline-flex;align-items:center;justify-content:center}.biometric-settings-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px;padding:10px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}.biometric-settings-row .hint{margin:0;flex:1}
 </style></head><body><div class="invoice-paper">${paper.innerHTML}</div></body></html>`}
 function saveInvoiceImage(){const inv=invoices.find(x=>x.id===currentInvoiceId),paper=document.getElementById('invoicePreview');if(!inv||!paper||!paper.innerHTML.trim()){toast('ابتدا یک فاکتور باز کن.');return}const blob=new Blob([invoiceStandaloneHtml()],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`AZA-invoice-${invoiceDisplayNo(inv)}.html`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);toast('فاکتور با همان طراحی ذخیره شد؛ فایل را باز کن و چاپ یا PDF بگیر.')}
 function shareInvoice(){const inv=invoices.find(x=>x.id===currentInvoiceId),paper=document.getElementById('invoicePreview');if(!inv||!paper||!paper.innerHTML.trim()){toast('ابتدا یک فاکتور باز کن.');return}document.getElementById('shareChoiceDialog').showModal()}
