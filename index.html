@@ -179,12 +179,52 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8b
 .rep-rank{width:26px;height:26px;border-radius:9px;background:#eef3ff;color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;flex:0 0 26px}
 .rep-name{flex:1;min-width:0}.rep-name small,.rep-num small{display:block;font-size:11px;color:#68778d;font-weight:700}
 .rep-num{text-align:left;font-size:12.5px}
+
+/* v26.5: glass login, contact pill, misc */
+.sub-title{font-size:13px;font-weight:900;color:var(--navy);margin:2px 0 10px}
+.backup-folder-row{display:grid;grid-template-columns:1fr auto;gap:8px}
+.backup-folder-row .outline{width:auto;padding:0 14px}
+.login-screen{background:linear-gradient(135deg,#0b1d45 0%,#1b3a8a 45%,#5b3fb8 100%);overflow:hidden}
+.login-screen::before,.login-screen::after{content:"";position:absolute;border-radius:50%;pointer-events:none;filter:blur(8px)}
+.login-screen::before{width:320px;height:320px;top:-80px;right:-70px;background:radial-gradient(circle at 35% 35%,#6ea8ff,#2f6bff 60%,transparent 72%);opacity:.85}
+.login-screen::after{width:360px;height:360px;bottom:-110px;left:-90px;background:radial-gradient(circle at 60% 40%,#ff7ad9,#8b5cf6 55%,transparent 72%);opacity:.7}
+.login-screen .login-card{position:relative;z-index:1;background:linear-gradient(160deg,rgba(255,255,255,.26),rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.38);backdrop-filter:blur(26px) saturate(160%);-webkit-backdrop-filter:blur(26px) saturate(160%);box-shadow:0 24px 70px rgba(5,12,40,.45),inset 0 1px 0 rgba(255,255,255,.5);color:#fff;border-radius:28px;padding:26px 22px}
+.login-screen .login-card h2{color:#fff;letter-spacing:3px}
+.login-screen .login-card .hint,.login-screen .login-card label{color:rgba(255,255,255,.82)}
+.login-screen .login-card input:not([type=checkbox]){background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.34);color:#fff;border-radius:14px;box-shadow:inset 0 1px 2px rgba(0,0,0,.08)}
+.login-screen .login-card input::placeholder{color:rgba(255,255,255,.55)}
+.login-screen .login-card input:-webkit-autofill{-webkit-text-fill-color:#fff;transition:background-color 9999s}
+.login-screen .login-card input:focus{border-color:rgba(255,255,255,.85);box-shadow:0 0 0 4px rgba(255,255,255,.18);background:rgba(255,255,255,.2)}
+.login-screen .login-card .logo{background:linear-gradient(145deg,rgba(255,255,255,.3),rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.5);color:#fff;backdrop-filter:blur(10px);box-shadow:0 10px 26px rgba(5,12,40,.35)}
+.login-screen .login-card .primary{background:linear-gradient(135deg,#ffffff,#dfe9ff);color:#14307a;border:0;box-shadow:0 10px 26px rgba(5,12,40,.3);font-weight:900}
+.login-screen .login-card .bio-login-btn{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.5);color:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.login-screen .login-card .login-actions .text-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);color:#fff}
+.login-screen .login-card .remember-row span{color:rgba(255,255,255,.9)}
+.login-screen .login-card .login-developer{color:rgba(255,255,255,.7)}
+.login-screen .login-card .login-developer strong{color:#fff}
+.contact-pill{display:flex;align-items:center;gap:12px;margin-top:16px;padding:8px 10px;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.28),rgba(255,255,255,.1));border:1px solid rgba(255,255,255,.45);box-shadow:0 8px 22px rgba(5,12,40,.25),inset 0 1px 0 rgba(255,255,255,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff;text-decoration:none;direction:ltr}
+.contact-pill:active{transform:scale(.985)}
+.contact-ico{flex:0 0 40px;width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#34d399,#059669);color:#fff;box-shadow:0 6px 14px rgba(5,150,105,.45)}
+.contact-num{flex:1;text-align:center;font-size:19px;font-weight:900;letter-spacing:2px;font-variant-numeric:tabular-nums;color:#fff}
+.contact-arrow{font-size:24px;line-height:1;opacity:.75;padding-right:6px;transform:scaleX(-1)}
+.fold-body>button.secondary,.fold-body>button.outline{display:block;width:100%;margin-top:8px}
+.fold-body>.backup-folder-row .outline{width:auto;margin-top:0}
+
+.pl-box{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff}
+.pl-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:13px}
+.pl-row:last-child{border-bottom:0}
+.pl-sub{background:#f7f9fd}.pl-sub.neg b{color:#c0392b}
+.pl-net{font-size:15px}.pl-net.pos{background:#e9f8f1;color:#0b7a56}.pl-net.neg{background:#ffecec;color:#c0392b}
+.debt-bar-fill.exp{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+.exp-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.exp-row small{display:block;font-size:11px;color:#68778d;font-weight:700}
+.exp-amt{text-align:left;font-size:12.5px;display:flex;flex-direction:column;align-items:flex-start;gap:2px}
 </style>
 </head>
 <body>
 <div id="storageBoot"><div class="boot-card"><div class="boot-logo">AZA</div><h2 style="margin:0 0 8px">AZA</h2><p style="margin:0;line-height:1.9">در حال آماده‌سازی اطلاعات ذخیره‌شده روی گوشی…</p></div></div>
 <div id="updateBanner" class="update-banner"><span>نسخه جدید AZA آماده است.</span><button type="button" onclick="location.reload()">بارگذاری نسخه جدید</button></div>
-<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود با رمز عبور</button><button class="bio-login-btn" type="button" id="biometricLoginBtn" onclick="loginWithBiometric()" style="display:none"><span aria-hidden="true">👆</span> ورود با اثر انگشت</button><div class="login-actions"><button class="text-btn compact-action" type="button" onclick="recoverLogin()">بازیابی رمز</button></div><p class="hint login-hint" id="loginBioHint">برای فعال‌سازی ورود با اثر انگشت، پس از ورود به تنظیمات بروید.</p><div class="support-panel login-support"><div class="support-icon" aria-hidden="true">☎</div><div class="support-copy"><div class="support-title">ارتباط با ما</div><div class="support-subtitle">تماس مستقیم با آزادمنش</div><a class="support-phone" href="tel:09372301428" dir="ltr">09372301428</a></div></div><div class="login-developer">طراحی و توسعه توسط <strong>آزادمنش</strong></div></form></div>
+<div class="login-screen" id="loginScreen"><form class="login-card" onsubmit="return doLogin(event)"><div class="login-brand"><div class="logo">AZA</div><h2 style="margin:0">AZA</h2><p class="hint">ورود به مدیریت فروشگاه</p></div><label>نام کاربری</label><input id="loginUsername" autocomplete="username" required placeholder="نام کاربری"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="رمز عبور"><label class="remember-row"><input id="rememberLogin" type="checkbox"><span>ذخیره نام کاربری و رمز عبور</span></label><button class="primary" type="submit">ورود با رمز عبور</button><button class="bio-login-btn" type="button" id="biometricLoginBtn" onclick="loginWithBiometric()" style="display:none"><span aria-hidden="true">👆</span> ورود با اثر انگشت</button><div class="login-actions"><button class="text-btn compact-action" type="button" onclick="recoverLogin()">بازیابی رمز</button></div><p class="hint login-hint" id="loginBioHint">برای فعال‌سازی ورود با اثر انگشت، پس از ورود به تنظیمات بروید.</p><a class="contact-pill" href="tel:09372301428" dir="ltr" aria-label="تماس با 09372301428"><span class="contact-ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><span class="contact-num">09372301428</span><span class="contact-arrow" aria-hidden="true">›</span></a><div class="login-developer">طراحی و توسعه توسط <strong>آزادمنش</strong></div></form></div>
 <header class="appbar">
   <div class="brand"><div class="logo" id="headerLogo">A</div><div class="aza-brandword"><strong>AZA</strong><small id="storeTitle">مدیریت فروشگاه شما</small></div></div>
   <div style="display:flex;align-items:center;gap:8px"><div class="offline">● حالت آفلاین</div><button class="logout-btn" type="button" onclick="logoutApp()">خروج</button></div>
@@ -204,9 +244,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8b
   </div>
   <div id="lowStockBox"></div>
   <details class="dashboard-stock-collapse" id="reportFold" ontoggle="if(this.open)renderReports()">
-    <summary><strong>📈 گزارش فروش و سود</strong><span>نمایش / بستن　⌄</span></summary>
+    <summary><strong>📊 گزارش سود و زیان و هزینه‌ها</strong><span>نمایش / بستن　⌄</span></summary>
     <div class="dashboard-stock-content">
-      <select id="reportRange" class="search" onchange="renderReports()"><option value="7">۷ روز اخیر</option><option value="30">۳۰ روز اخیر</option><option value="90">۹۰ روز اخیر</option><option value="0">همه زمان‌ها</option></select>
+      <select id="reportRange" class="search" onchange="renderReports()"><option value="today">امروز</option><option value="7">۷ روز اخیر</option><option value="month">این ماه (شمسی)</option><option value="30">۳۰ روز اخیر</option><option value="90">۹۰ روز اخیر</option><option value="all">همه زمان‌ها</option></select>
       <div id="reportBody"></div>
     </div>
   </details>
@@ -251,7 +291,19 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8b
 <section class="page" id="settings">
  <div class="welcome"><div><h1>تنظیمات</h1><p>برای خلوت ماندن صفحه، هر بخش را باز کن.</p></div></div>
  <details class="settings-fold"><summary>🏪 مشخصات فروشگاه</summary><div class="fold-body"><div class="field"><label>نام فروشگاه</label><input id="storeNameInput" placeholder="نام فروشگاه شما"></div><div class="formrow"><div class="field"><label>آدرس فروشگاه</label><input id="storeAddressInput" placeholder="آدرس فروشگاه"></div><div class="field"><label>موبایل فروشگاه</label><input id="storePhoneInput" type="tel" inputmode="tel" placeholder="شماره موبایل"></div></div><div class="field"><label>لوگوی فروشگاه</label><div style="display:flex;align-items:center;gap:12px"><img class="settings-logo" id="storeLogoPreview" alt="لوگوی فروشگاه"><input id="storeLogoFile" type="file" accept="image/*" onchange="loadStoreLogo(event)"></div></div><button class="primary" onclick="saveStoreSettings()">ذخیره مشخصات فروشگاه</button></div></details>
- <details class="settings-fold"><summary>🔐 نام کاربری و تغییر رمز عبور</summary><div class="fold-body"><div class="field"><label>نام کاربری</label><input id="usernameInput" autocomplete="username" placeholder="نام کاربری"></div><div class="field"><label>رمز عبور فعلی</label><input id="oldPassword" type="password" autocomplete="current-password"></div><div class="field"><label>رمز عبور جدید</label><input id="newPassword" type="password" autocomplete="new-password"></div><div class="field"><label>تکرار رمز جدید</label><input id="confirmPassword" type="password" autocomplete="new-password"></div><button class="primary" onclick="changeCredentials()">ذخیره اطلاعات ورود</button></div></details>
+ <details class="settings-fold"><summary>🔐 نام کاربری، رمز عبور و اثر انگشت</summary><div class="fold-body"><div class="field"><label>نام کاربری</label><input id="usernameInput" autocomplete="username" placeholder="نام کاربری"></div><div class="field"><label>رمز عبور فعلی</label><input id="oldPassword" type="password" autocomplete="current-password"></div><div class="field"><label>رمز عبور جدید</label><input id="newPassword" type="password" autocomplete="new-password"></div><div class="field"><label>تکرار رمز جدید</label><input id="confirmPassword" type="password" autocomplete="new-password"></div><button class="primary" onclick="changeCredentials()">ذخیره اطلاعات ورود</button>
+  <div class="sec-divider"></div>
+  <div class="sub-title">👆 ورود با اثر انگشت</div>
+  <div class="bio-status" id="biometricStatus" role="status"></div>
+  <p class="hint" id="bioPassHint">برای فعال‌سازی، ابتدا «رمز عبور فعلی» را در همین بخش وارد کن و سپس دکمه زیر را بزن.</p>
+  <button class="secondary" type="button" id="bioEnableBtn" onclick="enableBiometricLogin()">👆 راه‌اندازی ورود با اثر انگشت</button>
+  <button class="outline" type="button" id="bioDisableBtn" onclick="disableBiometricLogin()" style="display:none">غیرفعال‌کردن ورود با اثر انگشت</button>
+  <div class="sec-divider"></div>
+  <div class="sub-title">🔒 قفل خودکار</div>
+  <label class="remember-row"><input id="autoLockToggle" type="checkbox" onchange="saveSecurityPrefs()"><span>قفل خودکار برنامه پس از بی‌فعالیتی</span></label>
+  <div class="field" style="margin-top:10px"><label>مدت بی‌فعالیتی تا قفل شدن</label><select id="autoLockMinutes" onchange="saveSecurityPrefs()"><option value="1">۱ دقیقه</option><option value="3">۳ دقیقه</option><option value="5">۵ دقیقه</option><option value="10">۱۰ دقیقه</option><option value="30">۳۰ دقیقه</option></select></div>
+  <button class="secondary" type="button" onclick="lockApp(true)">🔒 قفل کردن همین حالا</button>
+  <p class="hint">اثر انگشت یا قفل صفحه همین گوشی برای باز کردن برنامه استفاده می‌شود؛ اطلاعات اثر انگشت هرگز وارد برنامه نمی‌شود. اگر گوشی را عوض کنی یا داده‌های مرورگر پاک شود، باید دوباره راه‌اندازی کنی.</p></div></details>
  <details class="settings-fold"><summary>🏷️ تعریف و چاپ لیبل کالا</summary><div class="fold-body">
  
  <div class="card"><div class="field"><label>انتخاب کالا</label><select id="labelProduct" onchange="previewLabel()" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:white"></select></div>
@@ -259,26 +311,14 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8b
  <div id="labelPreview" style="margin:12px auto;max-width:320px"></div><button class="primary" onclick="printLabels()">چاپ برچسب‌ها</button><p class="hint">این پیش‌نمایش از بارکد CODE 39 استفاده می‌کند. چاپ واقعی از گوشی به مدل چاپگر و سازگاری مرورگر وابسته است؛ فعلاً می‌توانی از گزینه چاپ مرورگر یا ذخیره PDF استفاده کنی.</p></div>
  <details class="label-list-fold"><summary>🏷️ فهرست کالاهای لیبل‌دار <span>نمایش فهرست ＋</span></summary><div class="card" id="labelProductList"></div></details><button class="outline" onclick="showPage('products')">بازگشت به کالاها</button>
 </div></details>
- <details class="settings-fold"><summary>📊 گزارش سود و زیان</summary><div class="fold-body"><p class="hint">محاسبه بر اساس قیمت خرید ثبت‌شده برای کالاها در فاکتورهای فروش است.</p><button class="primary" onclick="renderProfitLoss()">نمایش گزارش سود و زیان</button><div id="profitLossReport" style="margin-top:12px"></div></div></details>
- <details class="settings-fold" id="securityFold"><summary>👆 ورود با اثر انگشت و قفل برنامه</summary><div class="fold-body">
-  <div class="bio-status" id="biometricStatus" role="status"></div>
-  <div class="field" id="bioPassField"><label>رمز عبور فعلی (برای تأیید فعال‌سازی)</label><input id="bioPassword" type="password" autocomplete="current-password" placeholder="رمز عبور فعلی"></div>
-  <button class="primary" type="button" id="bioEnableBtn" onclick="enableBiometricLogin()">👆 فعال‌سازی ورود با اثر انگشت</button>
-  <button class="outline" type="button" id="bioDisableBtn" onclick="disableBiometricLogin()" style="display:none">غیرفعال‌کردن ورود با اثر انگشت</button>
-  <div class="sec-divider"></div>
-  <label class="remember-row"><input id="autoLockToggle" type="checkbox" onchange="saveSecurityPrefs()"><span>قفل خودکار برنامه پس از بی‌فعالیتی</span></label>
-  <div class="field" style="margin-top:10px"><label>مدت بی‌فعالیتی تا قفل شدن</label><select id="autoLockMinutes" onchange="saveSecurityPrefs()"><option value="1">۱ دقیقه</option><option value="3">۳ دقیقه</option><option value="5">۵ دقیقه</option><option value="10">۱۰ دقیقه</option><option value="30">۳۰ دقیقه</option></select></div>
-  <button class="secondary" type="button" onclick="lockApp(true)">🔒 قفل کردن همین حالا</button>
-  <p class="hint">اثر انگشت یا قفل صفحه همین گوشی برای باز کردن برنامه استفاده می‌شود. اطلاعات اثر انگشت هرگز وارد برنامه نمی‌شود و فقط خود گوشی آن را بررسی می‌کند. اگر گوشی را عوض کنی یا داده‌های مرورگر پاک شود، باید دوباره فعال‌سازی کنی.</p>
- </div></details>
  <details class="settings-fold"><summary>🧰 هشدار موجودی و خروجی اکسل</summary><div class="fold-body">
   <div class="field"><label>هشدار کم‌موجودی؛ وقتی تعداد کالا برابر یا کمتر از این عدد شد</label><input id="lowStockInput" type="number" min="0" max="999" inputmode="numeric"></div>
   <button class="secondary" type="button" onclick="saveLowStock()">ذخیره حد هشدار</button>
   <div class="sec-divider"></div>
   <p class="hint">فایل‌های CSV را می‌توانی مستقیم در Excel یا Google Sheets باز کنی.</p>
-  <div class="export-grid"><button class="outline" type="button" onclick="exportCsv('products')">⬇️ کالاها و موجودی</button><button class="outline" type="button" onclick="exportCsv('invoices')">⬇️ فاکتورها</button><button class="outline" type="button" onclick="exportCsv('debts')">⬇️ بدهکاران</button></div>
+  <div class="export-grid"><button class="outline" type="button" onclick="exportCsv('expenses')">⬇️ هزینه‌ها</button><button class="outline" type="button" onclick="exportCsv('products')">⬇️ کالاها و موجودی</button><button class="outline" type="button" onclick="exportCsv('invoices')">⬇️ فاکتورها</button><button class="outline" type="button" onclick="exportCsv('debts')">⬇️ بدهکاران</button></div>
  </div></details>
- <details class="settings-fold"><summary>💾 پشتیبان‌گیری و بازیابی اطلاعات</summary><div class="fold-body"><p class="hint">در هر ورود موفق، یک نسخه پشتیبان محلی در حافظه برنامه ساخته می‌شود. برای محافظت در برابر پاک‌شدن داده‌های مرورگر، فایل پشتیبان را هم به‌صورت دوره‌ای دانلود و خارج از گوشی نگهداری کن.</p><div class="backup-status" id="autoBackupStatus" role="status">وضعیت پشتیبان خودکار: هنوز نسخه‌ای ثبت نشده است.</div><div class="backup-restore-row backup-compact-actions"><button class="primary" onclick="backupData()">پشتیبان‌گیری</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">انتخاب فایل پشتیبان</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">بازیابی</button></div><input id="restoreFile" type="file" accept="application/json,.json" style="display:none" onchange="restoreData(event)"><p class="hint" style="margin-top:10px">پشتیبان خودکار داخل فضای ذخیره‌سازی همین مرورگر و همین دستگاه نگهداری می‌شود؛ پاک‌کردن اطلاعات سایت یا حذف برنامه ممکن است آن را نیز حذف کند.</p></div></details>
+ <details class="settings-fold"><summary>💾 پشتیبان‌گیری و بازیابی اطلاعات</summary><div class="fold-body"><p class="hint">در هر ورود موفق، یک نسخه پشتیبان محلی در حافظه برنامه ساخته می‌شود. برای محافظت در برابر پاک‌شدن داده‌های مرورگر، فایل پشتیبان را هم به‌صورت دوره‌ای دانلود و خارج از گوشی نگهداری کن.</p><div class="backup-status" id="autoBackupStatus" role="status">وضعیت پشتیبان خودکار: هنوز نسخه‌ای ثبت نشده است.</div><div class="sub-title">📁 پوشه ذخیره پشتیبان</div><div class="bio-status" id="backupFolderStatus" role="status"></div><div class="backup-folder-row"><button class="primary" type="button" id="chooseFolderBtn" onclick="chooseBackupFolder()">📁 انتخاب پوشه پشتیبان</button><button class="outline" type="button" id="clearFolderBtn" onclick="clearBackupFolder()" style="display:none">حذف پوشه</button></div><label class="remember-row" style="margin-top:10px"><input type="checkbox" id="autoDownloadToggle" onchange="saveAutoDownloadPref()"><span>اگر پوشه انتخاب‌شده در دسترس نبود، فایل پشتیبان در پوشه دانلودها ذخیره شود</span></label><p class="hint">با هر ورود، یک فایل پشتیبان خودکار در همان پوشه ساخته می‌شود و ۳۰ فایل آخر نگه داشته می‌شود. پوشه را یک زیرپوشه معمولی انتخاب کن (مثلاً AZA-Backup)؛ Chrome اجازه انتخاب خود Downloads یا Documents را نمی‌دهد.</p><div class="backup-restore-row backup-compact-actions"><button class="primary" onclick="backupData()">پشتیبان‌گیری</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">انتخاب فایل پشتیبان</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">بازیابی</button></div><input id="restoreFile" type="file" accept="application/json,.json" style="display:none" onchange="restoreData(event)"><p class="hint" style="margin-top:10px">پشتیبان خودکار داخل فضای ذخیره‌سازی همین مرورگر و همین دستگاه نگهداری می‌شود؛ پاک‌کردن اطلاعات سایت یا حذف برنامه ممکن است آن را نیز حذف کند.</p></div></details>
 </section>
 </main>
 
@@ -301,6 +341,15 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8b
     <div class="formrow"><div class="field"><label>قیمت خرید (تومان)</label><input name="buy" type="text" inputmode="numeric" value="۰" oninput="formatMoneyInput(this)"></div><div class="field"><label>قیمت فروش (تومان)</label><input name="sell" type="text" inputmode="numeric" value="۰" oninput="formatMoneyInput(this)"></div></div>
     <div class="field"><label>موجودی اولیه</label><input name="qty" type="number" min="0" value="0"></div>
     <button class="primary" type="submit">ذخیره کالا</button>
+  </form>
+</dialog>
+<dialog id="expenseDialog">
+  <div class="modalhead"><h3>ثبت هزینه فروشگاه</h3><button class="xbtn" onclick="document.getElementById('expenseDialog').close()">✕</button></div>
+  <form id="expenseForm" onsubmit="saveExpense(event)">
+    <div class="field"><label>نوع هزینه *</label><select name="category" id="expenseCategory"></select></div>
+    <div class="field"><label>عنوان یا توضیح</label><input name="title" placeholder="مثلاً قبض برق ماه آبان"></div>
+    <div class="formrow"><div class="field"><label>مبلغ (تومان) *</label><input name="amount" type="text" inputmode="numeric" required oninput="formatMoneyInput(this)"></div><div class="field"><label>تاریخ</label><input name="date" type="date" id="expenseDate"></div></div>
+    <button class="primary" type="submit">ذخیره هزینه</button>
   </form>
 </dialog>
 <dialog id="settleDialog"><div class="modalhead"><h3>ثبت تسویه بدهی</h3><button class="xbtn" onclick="document.getElementById('settleDialog').close()">✕</button></div><p id="settleCustomer" class="hint"></p><label for="settleAmount">مبلغ دریافتی (تومان)</label><input id="settleAmount" type="text" inputmode="numeric" oninput="formatMoneyInput(this)"><label for="settlePayment">روش پرداخت</label><select id="settlePayment" style="width:100%;padding:11px;border:1px solid var(--line);border-radius:11px;background:white;margin:8px 0 14px"><option>نقدی</option><option>کارت‌خوان</option><option>کارت به کارت</option></select><div style="display:flex;gap:8px"><button class="primary" onclick="confirmSettlement()">ثبت دریافت</button><button class="outline" onclick="document.getElementById('settleDialog').close()">انصراف</button></div></dialog>
@@ -333,8 +382,8 @@ let products = [
  {id:2,name:'شلوار جین',category:'لباس',color:'آبی',size:'۳۲',barcode:'10002',buy:420000,sell:650000,qty:8},
  {id:3,name:'کتانی روزمره',category:'کفش',color:'مشکی',size:'۴۲',barcode:'10003',buy:780000,sell:1150000,qty:6}
 ];
-let invoices=[], debts=[], cart={}, settlementReceipts=[];
-try { const saved=localStorage.getItem('aza_mobile_preview_v1'); if(saved){const d=JSON.parse(saved);products=d.products||products;invoices=d.invoices||[];debts=d.debts||[];settlementReceipts=Array.isArray(d.settlementReceipts)?d.settlementReceipts:[];} } catch(e){}
+let invoices=[], debts=[], cart={}, settlementReceipts=[], expenses=[];
+try { const saved=localStorage.getItem('aza_mobile_preview_v1'); if(saved){const d=JSON.parse(saved);products=d.products||products;invoices=d.invoices||[];debts=d.debts||[];settlementReceipts=Array.isArray(d.settlementReceipts)?d.settlementReceipts:[];expenses=Array.isArray(d.expenses)?d.expenses:[];} } catch(e){}
 const AZA_DB_NAME='aza_mobile_local_db';
 const AZA_DB_VERSION=3;
 function openAzaDB(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window)){reject(new Error('IndexedDB در این مرورگر در دسترس نیست'));return}const req=indexedDB.open(AZA_DB_NAME,AZA_DB_VERSION);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains('appState'))db.createObjectStore('appState');if(!db.objectStoreNames.contains('autoBackups'))db.createObjectStore('autoBackups');if(!db.objectStoreNames.contains('backupConfig'))db.createObjectStore('backupConfig')};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('خطا در بازکردن پایگاه داده'))})}
@@ -342,37 +391,75 @@ async function azaDbRead(){const db=await openAzaDB();return new Promise((resolv
 async function azaDbWrite(state){const db=await openAzaDB();return new Promise((resolve,reject)=>{const tx=db.transaction('appState','readwrite');tx.objectStore('appState').put(state,'main');tx.oncomplete=()=>{db.close();resolve(true)};tx.onerror=tx.onabort=()=>{db.close();reject(tx.error||new Error('ذخیره اطلاعات ناموفق بود'))}})}
 let azaStorageReady=false;
 function azaIsValidState(v){return !!(v&&Array.isArray(v.products)&&Array.isArray(v.invoices));}
-function azaApplyState(v){products=v.products;invoices=v.invoices;debts=Array.isArray(v.debts)?v.debts:[];settlementReceipts=Array.isArray(v.settlementReceipts)?v.settlementReceipts:[];if(v.storeSettings&&typeof v.storeSettings==='object')storeSettings=v.storeSettings;if(v.credentials&&typeof v.credentials==='object')credentials=v.credentials;}
-function azaCurrentState(){return {schemaVersion:2,savedAt:new Date().toISOString(),products,invoices,debts,settlementReceipts,storeSettings,credentials}}
+function azaApplyState(v){products=v.products;invoices=v.invoices;debts=Array.isArray(v.debts)?v.debts:[];settlementReceipts=Array.isArray(v.settlementReceipts)?v.settlementReceipts:[];expenses=Array.isArray(v.expenses)?v.expenses:[];if(v.storeSettings&&typeof v.storeSettings==='object')storeSettings=v.storeSettings;if(v.credentials&&typeof v.credentials==='object')credentials=v.credentials;}
+function azaCurrentState(){return {schemaVersion:2,savedAt:new Date().toISOString(),products,invoices,debts,settlementReceipts,expenses,storeSettings,credentials}}
 function persist(){if(!azaStorageReady){toast('ذخیره‌سازی هنوز آماده نیست؛ برای جلوگیری از آسیب به اطلاعات، دوباره تلاش کن.');return}azaDbWrite(azaCurrentState()).catch(()=>toast('ذخیره در پایگاه داده گوشی انجام نشد؛ فوراً از بخش پشتیبان‌گیری خروجی بگیر.'))}
 function digitsOnly(v){return String(v||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9]/g,'')}
 function formatMoneyInput(el){const raw=digitsOnly(el.value);el.value=raw?new Intl.NumberFormat('en-US').format(Number(raw)).replace(/,/g,'٬'):''}
 function parseMoney(id){return Number(digitsOnly(document.getElementById(id)?.value))||0}
-function azaBackupPayload(){return {format:'AZA backup',version:26.4,schemaVersion:2,createdAt:new Date().toISOString(),products:JSON.parse(JSON.stringify(products)),invoices:JSON.parse(JSON.stringify(invoices)),debts:JSON.parse(JSON.stringify(debts)),settlementReceipts:JSON.parse(JSON.stringify(settlementReceipts)),storeSettings:JSON.parse(JSON.stringify(storeSettings))}}
+function azaBackupPayload(){return {format:'AZA backup',version:26.6,schemaVersion:2,createdAt:new Date().toISOString(),products:JSON.parse(JSON.stringify(products)),invoices:JSON.parse(JSON.stringify(invoices)),debts:JSON.parse(JSON.stringify(debts)),settlementReceipts:JSON.parse(JSON.stringify(settlementReceipts)),expenses:JSON.parse(JSON.stringify(expenses)),storeSettings:JSON.parse(JSON.stringify(storeSettings))}}
 async function createAutoBackup(reason='login'){const payload=azaBackupPayload(),key=payload.createdAt,db=await openAzaDB();return new Promise((resolve,reject)=>{const tx=db.transaction('autoBackups','readwrite'),store=tx.objectStore('autoBackups');store.put(payload,key);const keysReq=store.getAllKeys();keysReq.onsuccess=()=>{const keys=keysReq.result.map(String).sort();const excess=keys.slice(0,Math.max(0,keys.length-10));excess.forEach(k=>store.delete(k))};tx.oncomplete=()=>{db.close();updateAutoBackupStatus(payload.createdAt);resolve(payload)};tx.onerror=tx.onabort=()=>{db.close();reject(tx.error||new Error('ذخیره نسخه پشتیبان خودکار ناموفق بود'))}})}
 async function getAutoBackups(){const db=await openAzaDB();return new Promise((resolve,reject)=>{const tx=db.transaction('autoBackups','readonly'),store=tx.objectStore('autoBackups'),keysReq=store.getAllKeys(),valsReq=store.getAll();tx.oncomplete=()=>{db.close();const rows=keysReq.result.map((k,i)=>({key:String(k),value:valsReq.result[i]})).sort((a,b)=>b.key.localeCompare(a.key));resolve(rows)};tx.onerror=tx.onabort=()=>{db.close();reject(tx.error||new Error('خواندن پشتیبان‌ها ناموفق بود'))}})}
 
 async function azaSaveBackupDirectoryHandle(handle){const db=await openAzaDB();return new Promise((resolve,reject)=>{const tx=db.transaction('backupConfig','readwrite');tx.objectStore('backupConfig').put(handle,'directory');tx.oncomplete=()=>{db.close();resolve(true)};tx.onerror=tx.onabort=()=>{db.close();reject(tx.error||new Error('ذخیره پوشه پشتیبان ناموفق بود'))}})}
 async function azaGetBackupDirectoryHandle(){const db=await openAzaDB();return new Promise((resolve,reject)=>{const tx=db.transaction('backupConfig','readonly'),req=tx.objectStore('backupConfig').get('directory');req.onsuccess=()=>{const v=req.result;tx.oncomplete=()=>{db.close();resolve(v||null)}};req.onerror=()=>{db.close();reject(req.error)}})}
 function azaBackupFilename(){return 'AZA_Backup_'+new Date().toISOString().replace(/[:.]/g,'-')+'.json'}
+let azaFolderError='',azaWasLocked=false;
+function azaFolderSupported(){return window.isSecureContext&&typeof window.showDirectoryPicker==='function'}
+async function azaFolderHandle(){try{return await azaGetBackupDirectoryHandle()}catch(e){return null}}
+async function azaClearBackupDirectoryHandle(){const db=await openAzaDB();return new Promise((resolve,reject)=>{const tx=db.transaction('backupConfig','readwrite');tx.objectStore('backupConfig').delete('directory');tx.oncomplete=()=>{db.close();resolve(true)};tx.onerror=tx.onabort=()=>{db.close();reject(tx.error)}})}
+async function azaPruneFolder(dir,keep=30){const names=[];for await(const [n,h] of dir.entries()){if(h.kind==='file'&&/^AZA_Backup_.*\.json$/.test(n)&&!/^AZA_Backup_v/.test(n))names.push(n)}names.sort();for(const n of names.slice(0,Math.max(0,names.length-keep)))await dir.removeEntry(n)}
 async function azaWriteBackupToFolder(payload,askPermission=false){
- try{const dir=await azaGetBackupDirectoryHandle();if(!dir)return false;let perm=await dir.queryPermission({mode:'readwrite'});if(perm!=='granted'&&askPermission&&dir.requestPermission)perm=await dir.requestPermission({mode:'readwrite'});if(perm!=='granted')return false;const file=await dir.getFileHandle(azaBackupFilename(),{create:true});const writable=await file.createWritable();await writable.write(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));await writable.close();return true;}catch(err){console.warn('External backup write failed',err);return false}
+ azaFolderError='';
+ try{
+  const dir=await azaFolderHandle();if(!dir){azaFolderError='nofolder';return false}
+  let perm=dir.queryPermission?await dir.queryPermission({mode:'readwrite'}):'granted';
+  if(perm!=='granted'&&askPermission&&dir.requestPermission)perm=await dir.requestPermission({mode:'readwrite'});
+  if(perm!=='granted'){azaFolderError='permission';return false}
+  const text=JSON.stringify(payload,null,2),fh=await dir.getFileHandle(azaBackupFilename(),{create:true});
+  const w=await fh.createWritable();await w.write(new Blob([text],{type:'application/json'}));await w.close();
+  const f=await fh.getFile();if(f.size<text.length)throw new Error('Backup file verification failed');
+  azaPruneFolder(dir).catch(e=>console.warn('Backup prune skipped',e));
+  try{localStorage.setItem('aza_last_folder_backup',new Date().toISOString())}catch(e){}
+  return true;
+ }catch(err){console.warn('External backup write failed',err);azaFolderError=(err&&err.name)||'error';return false}
 }
 async function chooseBackupFolder(){
- if(!window.showDirectoryPicker){alert('این مرورگر انتخاب مستقیم پوشه را پشتیبانی نمی‌کند. در این حالت فایل پشتیبان هنگام خروج در پوشه دانلودها ذخیره می‌شود.');return}
- try{const dir=await window.showDirectoryPicker({id:'aza-backups',mode:'readwrite'});const perm=await dir.requestPermission({mode:'readwrite'});if(perm!=='granted')throw new Error('Folder permission not granted');await azaSaveBackupDirectoryHandle(dir);const payload=azaBackupPayload();const ok=await azaWriteBackupToFolder(payload,true);if(!ok)throw new Error('Backup file write failed');toast('پوشه پشتیبان انتخاب شد و نسخه فعلی ذخیره شد.');}catch(err){if(err?.name!=='AbortError'){console.error(err);alert('انتخاب یا نوشتن در پوشه انجام نشد. مجوز دسترسی پوشه را بررسی کن.')}}
+ if(!azaFolderSupported()){alert('این مرورگر یا گوشی امکان انتخاب پوشه را ندارد (Chrome اندروید و iOS این قابلیت را ندارند؛ در Chrome/Edge کامپیوتر کار می‌کند و باید از لینک HTTPS باز شود).\n\nدر این حالت فایل پشتیبان با هر ورود و هنگام خروج در پوشه دانلودها ذخیره می‌شود.');return}
+ try{
+  const dir=await window.showDirectoryPicker({id:'aza-backups',mode:'readwrite'});
+  const perm=await dir.requestPermission({mode:'readwrite'});if(perm!=='granted')throw Object.assign(new Error('Folder permission not granted'),{name:'NotAllowedError'});
+  await azaSaveBackupDirectoryHandle(dir);
+  const ok=await azaWriteBackupToFolder(azaBackupPayload(),true);
+  if(!ok)throw new Error('Backup file write failed: '+azaFolderError);
+  toast('پوشه «'+dir.name+'» انتخاب شد و نسخه فعلی در آن ذخیره شد.');
+ }catch(err){if(err?.name!=='AbortError'){console.error(err);try{await azaClearBackupDirectoryHandle()}catch(e){}alert('انتخاب یا نوشتن در پوشه انجام نشد.\n\nیک زیرپوشه معمولی بساز (مثلاً AZA-Backup) و همان را انتخاب کن؛ پوشه‌های سیستمی مثل Downloads یا Documents پذیرفته نمی‌شوند. در پنجره مجوز هم «Edit files / ویرایش فایل‌ها» را اجازه بده.')}}
+ refreshBackupFolderUI();
+}
+async function clearBackupFolder(){if(!confirm('پوشه پشتیبان فراموش شود؟ فایل‌های قبلی داخل آن پاک نمی‌شوند.'))return;try{await azaClearBackupDirectoryHandle()}catch(e){}refreshBackupFolderUI();toast('پوشه پشتیبان حذف شد.')}
+function azaAutoDownloadPref(){try{const v=localStorage.getItem('aza_login_download');return v===null?!azaFolderSupported():v==='1'}catch(e){return true}}
+function saveAutoDownloadPref(){try{localStorage.setItem('aza_login_download',document.getElementById('autoDownloadToggle').checked?'1':'0')}catch(e){}}
+async function refreshBackupFolderUI(){
+ const el=document.getElementById('backupFolderStatus');if(!el)return;
+ const sup=azaFolderSupported(),dir=sup?await azaFolderHandle():null;
+ const choose=document.getElementById('chooseFolderBtn'),clear=document.getElementById('clearFolderBtn'),tg=document.getElementById('autoDownloadToggle');
+ if(tg)tg.checked=azaAutoDownloadPref();
+ if(clear)clear.style.display=dir?'':'none';if(choose)choose.textContent=dir?'📁 تغییر پوشه پشتیبان':'📁 انتخاب پوشه پشتیبان';
+ if(!sup){el.className='bio-status warn';el.textContent='این مرورگر/گوشی امکان انتخاب پوشه را ندارد (Chrome اندروید این قابلیت را ندارد). به‌جای آن، فایل پشتیبان با هر ورود و هنگام خروج در پوشه دانلودها ذخیره می‌شود.'}
+ else if(dir){let last='';try{const t=localStorage.getItem('aza_last_folder_backup');if(t)last=' · آخرین ذخیره: '+new Date(t).toLocaleString('fa-IR')}catch(e){}el.className='bio-status ok';el.textContent='✓ پوشه پشتیبان: «'+dir.name+'»'+last}
+ else{el.className='bio-status';el.textContent='هنوز پوشه‌ای انتخاب نشده است.'}
 }
 function azaDownloadPayload(payload){try{const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=azaBackupFilename();document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);return true}catch(e){console.error(e);return false}}
 
-function azaRecordCount(v){return (Array.isArray(v?.products)?v.products.length:0)+(Array.isArray(v?.invoices)?v.invoices.length:0)+(Array.isArray(v?.debts)?v.debts.length:0)+(Array.isArray(v?.settlementReceipts)?v.settlementReceipts.length:0)}
+function azaRecordCount(v){return (Array.isArray(v?.products)?v.products.length:0)+(Array.isArray(v?.invoices)?v.invoices.length:0)+(Array.isArray(v?.debts)?v.debts.length:0)+(Array.isArray(v?.settlementReceipts)?v.settlementReceipts.length:0)+(Array.isArray(v?.expenses)?v.expenses.length:0)}
 async function azaFindBestAutoBackup(){const rows=await getAutoBackups();return rows.filter(r=>azaIsValidState(r.value)).sort((a,b)=>azaRecordCount(b.value)-azaRecordCount(a.value)||b.key.localeCompare(a.key))[0]||null}
-async function restoreBestAutoBackup(){try{const best=await azaFindBestAutoBackup();if(!best){toast('پشتیبان قابل بازیابی پیدا نشد.');return}const count=azaRecordCount(best.value);if(!confirm('بهترین پشتیبان موجود شامل '+fa(count)+' مورد ثبت‌شده است. اطلاعات فعلی با این نسخه جایگزین شود؟ ابتدا از اطلاعات فعلی یک پشتیبان ساخته می‌شود.'))return;await createAutoBackup('before-best-restore');const keepCredentials=credentials;const d=best.value;products=d.products;invoices=d.invoices;debts=Array.isArray(d.debts)?d.debts:[];settlementReceipts=Array.isArray(d.settlementReceipts)?d.settlementReceipts:[];if(d.storeSettings)storeSettings=d.storeSettings;credentials=keepCredentials;await azaDbWrite(azaCurrentState());renderProducts();renderSaleProducts();renderInvoices();renderDebts();updateDashboard();document.getElementById('storeTitle').textContent=storeSettings.name||'مدیریت فروشگاه شما';toast('بهترین نسخه پشتیبان بازیابی شد.')}catch(err){console.error('Best backup restore failed',err);toast('بازیابی نسخه پشتیبان انجام نشد؛ اطلاعات فعلی تغییر نکرد.')}}
+async function restoreBestAutoBackup(){try{const best=await azaFindBestAutoBackup();if(!best){toast('پشتیبان قابل بازیابی پیدا نشد.');return}const count=azaRecordCount(best.value);if(!confirm('بهترین پشتیبان موجود شامل '+fa(count)+' مورد ثبت‌شده است. اطلاعات فعلی با این نسخه جایگزین شود؟ ابتدا از اطلاعات فعلی یک پشتیبان ساخته می‌شود.'))return;await createAutoBackup('before-best-restore');const keepCredentials=credentials;const d=best.value;products=d.products;invoices=d.invoices;debts=Array.isArray(d.debts)?d.debts:[];settlementReceipts=Array.isArray(d.settlementReceipts)?d.settlementReceipts:[];expenses=Array.isArray(d.expenses)?d.expenses:[];if(d.storeSettings)storeSettings=d.storeSettings;credentials=keepCredentials;await azaDbWrite(azaCurrentState());renderProducts();renderSaleProducts();renderInvoices();renderDebts();updateDashboard();document.getElementById('storeTitle').textContent=storeSettings.name||'مدیریت فروشگاه شما';toast('بهترین نسخه پشتیبان بازیابی شد.')}catch(err){console.error('Best backup restore failed',err);toast('بازیابی نسخه پشتیبان انجام نشد؛ اطلاعات فعلی تغییر نکرد.')}}
 
 function updateAutoBackupStatus(iso){const el=document.getElementById('autoBackupStatus');if(!el)return;if(!iso){el.textContent='وضعیت پشتیبان خودکار: هنوز نسخه‌ای ثبت نشده است.';return}el.textContent='آخرین پشتیبان خودکار: '+new Date(iso).toLocaleString('fa-IR')+' · حداکثر ۱۰ نسخه اخیر نگهداری می‌شود.'}
 async function refreshAutoBackupStatus(){try{const rows=await getAutoBackups();updateAutoBackupStatus(rows[0]?.key||null)}catch(e){console.warn('Auto backup status unavailable',e)}}
-async function restoreLatestAutoBackup(){try{const rows=await getAutoBackups();if(!rows.length){toast('هنوز نسخه پشتیبان خودکاری وجود ندارد.');return}if(!confirm('اطلاعات فعلی با آخرین پشتیبان محلی جایگزین شود؟ بهتر است ابتدا فایل پشتیبان جداگانه دانلود کنی.'))return;const d=rows[0].value;if(!d||!Array.isArray(d.products)||!Array.isArray(d.invoices))throw Error('invalid backup');const next={schemaVersion:2,savedAt:new Date().toISOString(),products:d.products,invoices:d.invoices,debts:Array.isArray(d.debts)?d.debts:[],settlementReceipts:Array.isArray(d.settlementReceipts)?d.settlementReceipts:[],storeSettings:d.storeSettings&&typeof d.storeSettings==='object'?d.storeSettings:storeSettings,credentials};await azaDbWrite(next);products=next.products;invoices=next.invoices;debts=next.debts;settlementReceipts=next.settlementReceipts;storeSettings=next.storeSettings;renderProducts();renderSaleProducts();renderInvoices();renderDebts();updateDashboard();document.getElementById('storeTitle').textContent=storeSettings.name||'مدیریت فروشگاه شما';toast('آخرین پشتیبان محلی بازیابی شد.')}catch(err){console.error('Local backup restore failed',err);toast('بازیابی پشتیبان محلی ناموفق بود؛ اطلاعات فعلی تغییر نکرد.')}}
+async function restoreLatestAutoBackup(){try{const rows=await getAutoBackups();if(!rows.length){toast('هنوز نسخه پشتیبان خودکاری وجود ندارد.');return}if(!confirm('اطلاعات فعلی با آخرین پشتیبان محلی جایگزین شود؟ بهتر است ابتدا فایل پشتیبان جداگانه دانلود کنی.'))return;const d=rows[0].value;if(!d||!Array.isArray(d.products)||!Array.isArray(d.invoices))throw Error('invalid backup');const next={schemaVersion:2,savedAt:new Date().toISOString(),products:d.products,invoices:d.invoices,debts:Array.isArray(d.debts)?d.debts:[],settlementReceipts:Array.isArray(d.settlementReceipts)?d.settlementReceipts:[],expenses:Array.isArray(d.expenses)?d.expenses:[],storeSettings:d.storeSettings&&typeof d.storeSettings==='object'?d.storeSettings:storeSettings,credentials};await azaDbWrite(next);products=next.products;invoices=next.invoices;debts=next.debts;settlementReceipts=next.settlementReceipts;expenses=next.expenses;storeSettings=next.storeSettings;renderProducts();renderSaleProducts();renderInvoices();renderDebts();updateDashboard();document.getElementById('storeTitle').textContent=storeSettings.name||'مدیریت فروشگاه شما';toast('آخرین پشتیبان محلی بازیابی شد.')}catch(err){console.error('Local backup restore failed',err);toast('بازیابی پشتیبان محلی ناموفق بود؛ اطلاعات فعلی تغییر نکرد.')}}
 function backupData(){try{const payload=azaBackupPayload();const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='AZA_Backup_v26.2_'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);toast('فایل پشتیبان آماده دانلود است؛ آن را در فضای امن دیگری هم نگه دار.')}catch(err){console.error(err);toast('ساخت نسخه پشتیبان ناموفق بود. فضای ذخیره‌سازی و مجوز دانلود را بررسی کن.')}}
-function restoreData(e){const file=e.target.files?.[0];if(!file)return;const r=new FileReader();r.onload=async()=>{try{const d=JSON.parse(r.result);if(!d||!Array.isArray(d.products)||!Array.isArray(d.invoices)||!d.products.every(x=>x&&typeof x==='object')||!d.invoices.every(x=>x&&typeof x==='object'))throw Error('invalid');if(!confirm('اطلاعات فعلی با اطلاعات فایل پشتیبان جایگزین شود؟ قبل از ادامه، از اطلاعات فعلی نسخه پشتیبان بگیر.'))return;const next={schemaVersion:2,savedAt:new Date().toISOString(),products:d.products,invoices:d.invoices,debts:Array.isArray(d.debts)?d.debts:[],settlementReceipts:Array.isArray(d.settlementReceipts)?d.settlementReceipts:[],storeSettings:d.storeSettings&&typeof d.storeSettings==='object'?d.storeSettings:storeSettings,credentials:d.credentials&&typeof d.credentials==='object'?d.credentials:credentials};await azaDbWrite(next);products=next.products;invoices=next.invoices;debts=next.debts;settlementReceipts=next.settlementReceipts;storeSettings=next.storeSettings;credentials=next.credentials;try{localStorage.setItem('aza_preview_store',JSON.stringify(storeSettings));localStorage.setItem('aza_preview_auth',JSON.stringify(credentials))}catch(storageError){console.warn('Legacy localStorage sync skipped',storageError)}renderProducts();renderSaleProducts();renderInvoices();renderDebts();updateDashboard();document.getElementById('storeTitle').textContent=storeSettings.name||'مدیریت فروشگاه شما';toast('بازیابی کامل شد و اطلاعات در پایگاه داده محلی ذخیره شد.')}catch(err){console.error('AZA restore failed',err);toast('بازیابی انجام نشد؛ فایل نامعتبر است یا ذخیره‌سازی در دسترس نیست. اطلاعات فعلی تغییر داده نشد.')}finally{e.target.value=''}};r.onerror=()=>{toast('خواندن فایل پشتیبان ناموفق بود.');e.target.value=''};r.readAsText(file)}
+function restoreData(e){const file=e.target.files?.[0];if(!file)return;const r=new FileReader();r.onload=async()=>{try{const d=JSON.parse(r.result);if(!d||!Array.isArray(d.products)||!Array.isArray(d.invoices)||!d.products.every(x=>x&&typeof x==='object')||!d.invoices.every(x=>x&&typeof x==='object'))throw Error('invalid');if(!confirm('اطلاعات فعلی با اطلاعات فایل پشتیبان جایگزین شود؟ قبل از ادامه، از اطلاعات فعلی نسخه پشتیبان بگیر.'))return;const next={schemaVersion:2,savedAt:new Date().toISOString(),products:d.products,invoices:d.invoices,debts:Array.isArray(d.debts)?d.debts:[],settlementReceipts:Array.isArray(d.settlementReceipts)?d.settlementReceipts:[],expenses:Array.isArray(d.expenses)?d.expenses:[],storeSettings:d.storeSettings&&typeof d.storeSettings==='object'?d.storeSettings:storeSettings,credentials:d.credentials&&typeof d.credentials==='object'?d.credentials:credentials};await azaDbWrite(next);products=next.products;invoices=next.invoices;debts=next.debts;settlementReceipts=next.settlementReceipts;expenses=next.expenses;storeSettings=next.storeSettings;credentials=next.credentials;try{localStorage.setItem('aza_preview_store',JSON.stringify(storeSettings));localStorage.setItem('aza_preview_auth',JSON.stringify(credentials))}catch(storageError){console.warn('Legacy localStorage sync skipped',storageError)}renderProducts();renderSaleProducts();renderInvoices();renderDebts();updateDashboard();document.getElementById('storeTitle').textContent=storeSettings.name||'مدیریت فروشگاه شما';toast('بازیابی کامل شد و اطلاعات در پایگاه داده محلی ذخیره شد.')}catch(err){console.error('AZA restore failed',err);toast('بازیابی انجام نشد؛ فایل نامعتبر است یا ذخیره‌سازی در دسترس نیست. اطلاعات فعلی تغییر داده نشد.')}finally{e.target.value=''}};r.onerror=()=>{toast('خواندن فایل پشتیبان ناموفق بود.');e.target.value=''};r.readAsText(file)}
 function renderLabelProducts(){const sel=document.getElementById('labelProduct');if(!sel)return;const current=sel.value;sel.innerHTML=products.map(p=>`<option value="${p.id}">${esc(p.name)} · ${esc(p.color||'—')} · ${esc(p.size||'—')} · ${esc(p.barcode||'بدون کد')}</option>`).join('');if(current&&products.some(p=>String(p.id)===current))sel.value=current;previewLabel();const list=document.getElementById('labelProductList');if(list)list.innerHTML=products.length?products.map(p=>`<div class="product"><div class="picon">🏷️</div><div class="pdetails"><b>${esc(p.name)}</b><small>${esc(p.color||'—')} · سایز ${esc(p.size||'—')} · بارکد ${esc(p.barcode||'هنوز ساخته نشده')}</small></div><button class="secondary" onclick="selectLabelProduct(${p.id})">انتخاب</button></div>`).join(''):'<div class="empty">ابتدا کالا ثبت کن.</div>'}
 function selectLabelProduct(id){const s=document.getElementById('labelProduct');s.value=String(id);previewLabel();window.scrollTo(0,0)}
 function code39Svg(code){const map={'0':'nnnwwnwnn','1':'wnnwnnnnw','2':'nnwwnnnnw','3':'wnwwnnnnn','4':'nnnwwnnnw','5':'wnnwwnnnn','6':'nnwwwnnnn','7':'nnnwnnwnw','8':'wnnwnnwnn','9':'nnwwnnwnn','A':'wnnnnwnnw','B':'nnwnnwnnw','C':'wnwnnwnnn','D':'nnnnwwnnw','E':'wnnnwwnnn','F':'nnwnwwnnn','G':'nnnnnwwnw','H':'wnnnnwwnn','I':'nnwnnwwnn','J':'nnnnwwwnn','K':'wnnnnnnww','L':'nnwnnnnww','M':'wnwnnnnwn','N':'nnnnwnnww','O':'wnnnwnnwn','P':'nnwnwnnwn','Q':'nnnnnnwww','R':'wnnnnnwwn','S':'nnwnnnwwn','T':'nnnnwnwwn','U':'wwnnnnnnw','V':'nwwnnnnnw','W':'wwwnnnnnn','X':'nwnnwnnnw','Y':'wwnnwnnnn','Z':'nwwnwnnnn','-':'nwnnnnwnw','.':'wwnnnnwnn',' ':'nwwnnnwnn','$':'nwnwnwnnn','/':'nwnwnnnwn','+':'nwnnnwnwn','%':'nnnwnwnwn','*':'nwnnwnwnn'};code=('*'+String(code||'AZA001').toUpperCase().replace(/[^0-9A-Z. $/+%-]/g,'')+'*');let x=10,bars='';for(const ch of code){const pat=map[ch]||map['0'];for(let i=0;i<9;i++){const w=pat[i]==='w'?3:1;if(i%2===0)bars+=`<rect x="${x}" y="5" width="${w}" height="55" fill="#111"/>`;x+=w}x+=1}return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${x+5} 66" width="100%" height="66">${bars}</svg>`}
@@ -580,7 +667,17 @@ async function recoverLogin(){
 
 async function finishAzaLogin(){
  if(!azaStorageReady)throw new Error('AZA storage is not ready; login is blocked to protect data.');
- try{const payload=await createAutoBackup('login');await azaWriteBackupToFolder(payload,false)}catch(err){console.error('Automatic backup failed',err);alert('پشتیبان خودکار ساخته نشد؛ برای محافظت از اطلاعات، ورود انجام نشد. دوباره تلاش کن یا از بخش پشتیبان‌گیری کمک بگیر.');throw err}
+ const relock=azaWasLocked;azaWasLocked=false;
+ let payload;
+ try{payload=await createAutoBackup('login')}catch(err){console.error('Automatic backup failed',err);alert('پشتیبان خودکار ساخته نشد؛ برای محافظت از اطلاعات، ورود انجام نشد. دوباره تلاش کن یا از بخش پشتیبان‌گیری کمک بگیر.');throw err}
+ if(!relock){
+  const saved=await azaWriteBackupToFolder(payload,true);
+  if(saved)toast('پشتیبان این ورود در پوشه انتخابی ذخیره شد.');
+  else{
+   const hadFolder=azaFolderError!=='nofolder';
+   if((hadFolder||azaAutoDownloadPref())&&azaDownloadPayload(payload))toast(hadFolder?'پوشه پشتیبان در دسترس نبود؛ فایل پشتیبان در پوشه دانلودها ذخیره شد.':'فایل پشتیبان در پوشه دانلودها ذخیره شد.');
+  }
+ }
  requestPersistentStorage().then(ok=>{if(!ok)console.info('Browser did not grant persistent storage; keep external JSON backups.')});
  document.getElementById('loginScreen').style.display='none';
  azaLoggedIn=true;startIdleTimer();
@@ -599,7 +696,7 @@ function refreshBiometricUI(){
   else if(enrolled){st.className='bio-status ok';st.textContent='✓ ورود با اثر انگشت فعال است.'}
   else{st.className='bio-status';st.textContent='ورود با اثر انگشت هنوز فعال نشده است.'}
  }
- const pf=document.getElementById('bioPassField'),en=document.getElementById('bioEnableBtn'),dis=document.getElementById('bioDisableBtn');
+ const pf=document.getElementById('bioPassHint'),en=document.getElementById('bioEnableBtn'),dis=document.getElementById('bioDisableBtn');
  if(pf)pf.style.display=enrolled?'none':'';if(en)en.style.display=enrolled?'none':'';if(dis)dis.style.display=enrolled?'':'none';
 }
 async function azaBioAssert(){
@@ -615,7 +712,7 @@ async function azaBioAssert(){
  return true;
 }
 async function enableBiometricLogin(){
- const p=document.getElementById('bioPassword').value;
+ const p=document.getElementById('oldPassword').value;
  if(p!==credentials.password){alert('رمز عبور فعلی درست نیست. برای فعال‌سازی، رمز عبور فعلی را وارد کن.');return}
  if(!biometricSupported()){alert('این مرورگر قابلیت قفل امن دستگاه را ندارد. برنامه را با Chrome به‌روز و از لینک HTTPS باز کن.');return}
  if(!(await biometricPlatformReady())){alert('این گوشی یا مرورگر، اثر انگشت/قفل صفحه را در این آدرس ارائه نمی‌کند. ابتدا یک اثر انگشت یا قفل صفحه در تنظیمات گوشی فعال کن و دوباره تلاش کن.');return}
@@ -629,7 +726,7 @@ async function enableBiometricLogin(){
   }});
   if(!credential)throw new Error('no credential');
   localStorage.setItem(BIO_KEY,azaB64Url(credential.rawId));
-  document.getElementById('bioPassword').value='';
+  document.getElementById('oldPassword').value='';
   refreshBiometricUI();toast('ورود با اثر انگشت فعال شد.');
  }catch(err){console.error('Biometric enrollment failed',err);if(err&&err.name==='NotAllowedError')toast('فعال‌سازی لغو شد یا اثر انگشت تأیید نشد.');else alert('فعال‌سازی انجام نشد. اثر انگشت یا قفل صفحه گوشی را فعال کن و در Chrome به‌روز روی لینک HTTPS دوباره امتحان کن.')}
 }
@@ -653,7 +750,7 @@ function startIdleTimer(){clearTimeout(azaIdleTimer);azaIdleTimer=null;const p=s
 function lockApp(manual){
  if(!azaLoggedIn)return;
  document.querySelectorAll('dialog[open]').forEach(d=>{try{d.close()}catch(e){}});
- azaLoggedIn=false;clearTimeout(azaIdleTimer);
+ azaLoggedIn=false;azaWasLocked=true;clearTimeout(azaIdleTimer);
  const ls=document.getElementById('loginScreen');ls.style.display='flex';
  document.getElementById('loginPassword').value='';
  refreshBiometricUI();
@@ -676,33 +773,58 @@ function renderLowStock(){
 }
 
 /* ===== Reports ===== */
-function invoiceCost(inv){return (inv.items||[]).reduce((s,it)=>s+(Number(it.buy)||0)*(Number(it.count)||0),0)}
+const EXPENSE_CATS=['اجاره','حقوق و دستمزد','قبوض (برق، آب، گاز، اینترنت)','حمل‌ونقل و ارسال','تبلیغات و بازاریابی','ملزومات و بسته‌بندی','تعمیرات و نگهداری','مالیات و عوارض','خرید غیرکالایی','سایر'];
+function localDateStr(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function openExpenseDialog(){const sel=document.getElementById('expenseCategory');sel.innerHTML=EXPENSE_CATS.map(c=>`<option>${esc(c)}</option>`).join('');const f=document.getElementById('expenseForm');f.reset();document.getElementById('expenseDate').value=localDateStr(new Date());document.getElementById('expenseDialog').showModal()}
+function saveExpense(e){
+ e.preventDefault();const f=new FormData(e.target),amount=Number(digitsOnly(f.get('amount')))||0;
+ if(amount<=0){toast('مبلغ هزینه را وارد کن.');return}
+ const ds=String(f.get('date')||localDateStr(new Date())).split('-').map(Number);let ts=new Date(ds[0],ds[1]-1,ds[2],12).getTime();if(!Number.isFinite(ts))ts=Date.now();
+ expenses.unshift({id:Date.now(),ts,category:String(f.get('category')||'سایر'),title:String(f.get('title')||'').trim(),amount});
+ persist();document.getElementById('expenseDialog').close();renderReports();toast('هزینه ثبت شد.');
+}
+function deleteExpense(id){const x=expenses.find(e=>Number(e.id)===Number(id));if(!x)return;if(!confirm(`هزینه «${x.title||x.category}» به مبلغ ${money(x.amount)} حذف شود؟`))return;expenses=expenses.filter(e=>Number(e.id)!==Number(id));persist();renderReports();toast('هزینه حذف شد.')}
+function jalaliDay(d){return Number(new Intl.DateTimeFormat('en-u-ca-persian',{day:'numeric'}).format(d))||1}
+function reportRangeInfo(){
+ const v=document.getElementById('reportRange').value,now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ const end=t0.getTime()+86400000-1;let start=0,label='همه زمان‌ها',bars=14;
+ if(v==='today'){start=t0.getTime();label='امروز، '+now.toLocaleDateString('fa-IR');bars=7}
+ else if(v==='month'){start=t0.getTime()-(jalaliDay(now)-1)*86400000;label='از اول ماه شمسی تا امروز';bars=Math.max(7,Math.min(jalaliDay(now),14))}
+ else if(v!=='all'){const n=Number(v)||7;start=t0.getTime()-(n-1)*86400000;label=fa(n)+' روز اخیر';bars=Math.min(n,14)}
+ return {start,end,label,bars,v};
+}
 function renderReports(){
  const el=document.getElementById('reportBody');if(!el)return;
- const days=Number(document.getElementById('reportRange').value);
- const now=new Date(),start=days?new Date(now.getFullYear(),now.getMonth(),now.getDate()-(days-1)).getTime():0;
- const list=invoices.filter(i=>Number(i.id)>=start);
- const revenue=list.reduce((s,i)=>s+(Number(i.total)||0),0),cost=list.reduce((s,i)=>s+invoiceCost(i),0),profit=revenue-cost;
+ const R=reportRangeInfo(),now=new Date();
+ const list=invoices.filter(i=>Number(i.id)>=R.start&&Number(i.id)<=R.end);
+ const exps=expenses.filter(x=>Number(x.ts)>=R.start&&Number(x.ts)<=R.end).sort((a,b)=>Number(b.ts)-Number(a.ts));
+ const revenue=list.reduce((s,i)=>s+(Number(i.total)||0),0),cost=list.reduce((s,i)=>s+invoiceCost(i),0),gross=revenue-cost;
+ const expTotal=exps.reduce((s,x)=>s+(Number(x.amount)||0),0),net=gross-expTotal;
  const items=list.reduce((s,i)=>s+(i.items||[]).reduce((a,it)=>a+(Number(it.count)||0),0),0);
- const avg=list.length?Math.round(revenue/list.length):0,margin=revenue?Math.round(profit/revenue*100):0;
- // daily chart: last 7 days (or last 14 / 30 for longer ranges, limited to 14 bars)
- const bars=Math.min(days||14,14),series=[];
- for(let k=bars-1;k>=0;k--){const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()-k),key=d.toDateString();series.push({d,v:invoices.filter(i=>new Date(Number(i.id)).toDateString()===key).reduce((s,i)=>s+(Number(i.total)||0),0)})}
+ const avg=list.length?Math.round(revenue/list.length):0,margin=revenue?Math.round(net/revenue*100):0;
+ const series=[];
+ for(let k=R.bars-1;k>=0;k--){const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()-k),key=d.toDateString();series.push({d,v:invoices.filter(i=>new Date(Number(i.id)).toDateString()===key).reduce((s,i)=>s+(Number(i.total)||0),0)})}
  const max=Math.max(1,...series.map(x=>x.v));
- const chart=`<div class="rep-chart" aria-label="نمودار فروش روزانه">${series.map(x=>`<div class="rep-col"><div class="rep-val">${x.v?fa(Math.round(x.v/1000)):''}</div><div class="rep-bar" style="height:${x.v?Math.max(4,Math.round(x.v/max*100)):2}%"></div><div class="rep-lbl">${x.d.toLocaleDateString('fa-IR',{day:'numeric'})}</div></div>`).join('')}</div><div class="hint" style="margin-top:2px">فروش روزانه ${fa(bars)} روز اخیر؛ مبلغ‌ها به هزار تومان</div>`;
- // top sellers
- const agg={};list.forEach(i=>(i.items||[]).forEach(it=>{const k=it.name+'|'+(it.color||'')+'|'+(it.size||'');const a=agg[k]||(agg[k]={name:it.name,color:it.color,size:it.size,count:0,rev:0,profit:0});a.count+=Number(it.count)||0;a.rev+=(Number(it.sell)||0)*(Number(it.count)||0);a.profit+=((Number(it.sell)||0)-(Number(it.buy)||0))*(Number(it.count)||0)}));
+ const chart=`<div class="rep-chart" aria-label="نمودار فروش روزانه">${series.map(x=>`<div class="rep-col"><div class="rep-val">${x.v?fa(Math.round(x.v/1000)):''}</div><div class="rep-bar" style="height:${x.v?Math.max(4,Math.round(x.v/max*100)):2}%"></div><div class="rep-lbl">${x.d.toLocaleDateString('fa-IR',{day:'numeric'})}</div></div>`).join('')}</div><div class="hint" style="margin-top:2px">فروش روزانه ${fa(R.bars)} روز اخیر؛ مبلغ‌ها به هزار تومان</div>`;
+ const agg={};list.forEach(i=>(i.items||[]).forEach(it=>{const k=it.name+'|'+(it.color||'')+'|'+(it.size||'');const a=agg[k]||(agg[k]={name:it.name,color:it.color,size:it.size,count:0,profit:0});a.count+=Number(it.count)||0;a.profit+=((Number(it.sell)||0)-(Number(it.buy)||0))*(Number(it.count)||0)}));
  const top=Object.values(agg).sort((a,b)=>b.count-a.count).slice(0,5);
- // sales by category
  const cats={};list.forEach(i=>(i.items||[]).forEach(it=>{const c=it.category||'بدون دسته';cats[c]=(cats[c]||0)+(Number(it.sell)||0)*(Number(it.count)||0)}));
- const catRows=Object.entries(cats).sort((a,b)=>b[1]-a[1]).slice(0,5);
- const catMax=Math.max(1,...catRows.map(x=>x[1]));
- el.innerHTML=`<div class="rep-kpis"><div><small>فروش</small><b>${money(revenue)}</b></div><div><small>سود ناخالص</small><b class="${profit<0?'neg':'pos'}">${money(profit)}</b></div><div><small>تعداد فاکتور</small><b>${fa(list.length)}</b></div><div><small>میانگین هر فاکتور</small><b>${money(avg)}</b></div><div><small>اقلام فروخته‌شده</small><b>${fa(items)}</b></div><div><small>حاشیه سود</small><b>٪${fa(margin)}</b></div></div>${chart}`
- +`<div class="section-head" style="margin:14px 0 6px"><h2 style="font-size:14px">پرفروش‌ترین کالاها</h2></div>`+(top.length?top.map((t,n)=>`<div class="rep-row"><span class="rep-rank">${fa(n+1)}</span><div class="rep-name"><b>${esc(t.name)}</b><small>${esc(t.color||'')} ${esc(t.size||'')}</small></div><div class="rep-num">${fa(t.count)} عدد<small>سود ${money(t.profit)}</small></div></div>`).join(''):'<div class="empty">در این بازه فروشی ثبت نشده است.</div>')
- +(catRows.length?`<div class="section-head" style="margin:14px 0 6px"><h2 style="font-size:14px">فروش به تفکیک دسته‌بندی</h2></div>`+catRows.map(([c,v])=>`<div class="debt-bar-row"><span>${esc(c)}</span><div class="debt-bar-track"><div class="debt-bar-fill" style="width:${Math.max(3,Math.round(v/catMax*100))}%"></div></div><b>${money(v)}</b></div>`).join(''):'')
- +`<p class="hint">سود ناخالص = فروش پس از تخفیف − قیمت خرید ثبت‌شده؛ هزینه‌های جانبی فروشگاه لحاظ نشده است.</p>`;
+ const catRows=Object.entries(cats).sort((a,b)=>b[1]-a[1]).slice(0,5),catMax=Math.max(1,...catRows.map(x=>x[1]));
+ const ecats={};exps.forEach(x=>{ecats[x.category||'سایر']=(ecats[x.category||'سایر']||0)+(Number(x.amount)||0)});
+ const eRows=Object.entries(ecats).sort((a,b)=>b[1]-a[1]),eMax=Math.max(1,...eRows.map(x=>x[1]));
+ const plRow=(l,v,cls='',sign='')=>`<div class="pl-row ${cls}"><span>${l}</span><b>${sign}${money(Math.abs(v))}</b></div>`;
+ const head=t=>`<div class="section-head" style="margin:16px 0 6px"><h2 style="font-size:14px">${t}</h2></div>`;
+ el.innerHTML=`<div class="hint" style="margin:0 0 10px"><b>بازه گزارش:</b> ${esc(R.label)}</div>`
+ +`<div class="pl-box">${plRow('فروش (پس از تخفیف)',revenue)}${plRow('بهای خرید کالاهای فروخته‌شده',cost,'','− ')}${plRow('سود ناخالص',gross,'pl-sub'+(gross<0?' neg':''),gross<0?'− ':'')}${plRow('هزینه‌های فروشگاه',expTotal,'','− ')}${plRow(net<0?'زیان خالص':'سود خالص',net,'pl-net '+(net<0?'neg':'pos'),net<0?'− ':'')}</div>`
+ +`<div class="rep-kpis" style="margin-top:12px"><div><small>تعداد فاکتور</small><b>${fa(list.length)}</b></div><div><small>اقلام فروخته‌شده</small><b>${fa(items)}</b></div><div><small>میانگین هر فاکتور</small><b>${money(avg)}</b></div><div><small>حاشیه سود خالص</small><b class="${net<0?'neg':'pos'}">٪${fa(margin)}</b></div></div>`
+ +chart
+ +head('هزینه‌های ثبت‌شده')+`<button class="secondary" type="button" onclick="openExpenseDialog()" style="width:100%;margin-bottom:8px">＋ ثبت هزینه جدید</button>`
+ +(eRows.length?eRows.map(([c,v])=>`<div class="debt-bar-row"><span>${esc(c)}</span><div class="debt-bar-track"><div class="debt-bar-fill exp" style="width:${Math.max(3,Math.round(v/eMax*100))}%"></div></div><b>${money(v)}</b></div>`).join('')+exps.slice(0,25).map(x=>`<div class="exp-row"><div><b>${esc(x.title||x.category)}</b><small>${esc(x.category)} · ${new Date(Number(x.ts)).toLocaleDateString('fa-IR')}</small></div><div class="exp-amt">${money(x.amount)}<button class="text-btn danger-text" type="button" onclick="deleteExpense(${Number(x.id)})">حذف</button></div></div>`).join(''):'<div class="empty">در این بازه هزینه‌ای ثبت نشده است.</div>')
+ +head('پرفروش‌ترین کالاها')+(top.length?top.map((t,n)=>`<div class="rep-row"><span class="rep-rank">${fa(n+1)}</span><div class="rep-name"><b>${esc(t.name)}</b><small>${esc(t.color||'')} ${esc(t.size||'')}</small></div><div class="rep-num">${fa(t.count)} عدد<small>سود ${money(t.profit)}</small></div></div>`).join(''):'<div class="empty">در این بازه فروشی ثبت نشده است.</div>')
+ +(catRows.length?head('فروش به تفکیک دسته‌بندی')+catRows.map(([c,v])=>`<div class="debt-bar-row"><span>${esc(c)}</span><div class="debt-bar-track"><div class="debt-bar-fill" style="width:${Math.max(3,Math.round(v/catMax*100))}%"></div></div><b>${money(v)}</b></div>`).join(''):'')
+ +`<p class="hint">سود خالص = فروش پس از تخفیف − قیمت خرید کالاها − هزینه‌های ثبت‌شده در همین بازه. هرچه هزینه‌ها کامل‌تر ثبت شود، گزارش دقیق‌تر است.</p>`;
 }
-
+function invoiceCost(inv){return (inv.items||[]).reduce((s,it)=>s+(Number(it.buy)||0)*(Number(it.count)||0),0)}
 /* ===== CSV export ===== */
 function csvCell(v){let t=String(v??'');if(/^[=+\-@\t\r]/.test(t))t="'"+t;return '"'+t.replace(/"/g,'""')+'"'}
 function downloadCsv(name,rows){
@@ -712,6 +834,7 @@ function exportCsv(kind){
  const stamp=new Date().toISOString().slice(0,10);
  if(kind==='products')downloadCsv(`AZA_products_${stamp}.csv`,[['نام کالا','دسته','رنگ','سایز','بارکد','قیمت خرید','قیمت فروش','موجودی']].concat(products.map(p=>[p.name,p.category,p.color,p.size,p.barcode,p.buy,p.sell,p.qty])));
  else if(kind==='invoices')downloadCsv(`AZA_invoices_${stamp}.csv`,[['شماره فاکتور','تاریخ','ساعت','مشتری','تلفن','اقلام','جمع کل','تخفیف','مبلغ نهایی','دریافتی','مانده','روش پرداخت']].concat(invoices.map(i=>[invoiceDisplayNo(i),i.date,i.time||'',i.customerName||'',i.customerPhone||'',(i.items||[]).map(it=>`${it.name} ${it.color||''} ${it.size||''} ×${it.count}`).join(' | '),i.subtotal,i.discount,i.total,i.paid??i.total,i.balance||0,i.payment||''])));
+ else if(kind==='expenses')downloadCsv(`AZA_expenses_${stamp}.csv`,[['تاریخ','نوع هزینه','عنوان','مبلغ']].concat(expenses.slice().sort((a,b)=>b.ts-a.ts).map(x=>[new Date(Number(x.ts)).toLocaleDateString('fa-IR'),x.category,x.title||'',x.amount])));
  else if(kind==='debts')downloadCsv(`AZA_debts_${stamp}.csv`,[['مشتری','تلفن','مجموع خرید نسیه','پرداخت‌شده','مانده بدهی','آخرین تاریخ']].concat(debts.filter(d=>Number(d.balance)>0).map(d=>[d.customerName,d.customerPhone,d.total,d.paid,d.balance,d.date])));
 }
 
@@ -726,18 +849,20 @@ async function doLogin(e){
  alert('نام کاربری یا رمز عبور اشتباه است.');return false;
 }
 async function logoutApp(){
- if(!confirm('قبل از خروج، نسخه پشتیبان تازه ساخته و ذخیره شود؟ تا پایان این مرحله از برنامه خارج نمی‌شوی.'))return;
+ if(!confirm('از برنامه خارج می‌شوی؟ قبل از خروج، پشتیبان تازه گرفته و ذخیره می‌شود؛ اگر پشتیبان‌گیری انجام نشود، خروج انجام نخواهد شد.'))return;
  const btn=document.querySelector('.logout-btn');if(btn){btn.disabled=true;btn.textContent='در حال پشتیبان…'}
  try{
   if(!azaStorageReady)throw new Error('Storage not ready');
   const payload=await createAutoBackup('logout');
-  let externalSaved=await azaWriteBackupToFolder(payload,true);
+  const externalSaved=await azaWriteBackupToFolder(payload,true);
   if(!externalSaved){
+   const hadFolder=azaFolderError!=='nofolder';
    const started=azaDownloadPayload(payload);
    if(!started)throw new Error('Download could not start');
-   const confirmed=confirm('فایل پشتیبان برای دانلود ارسال شد. پس از دیدن فایل AZA_Backup در پوشه دانلودهای گوشی، «تأیید» را بزن تا خارج شوی. اگر فایل را نمی‌بینی، «لغو» را بزن و دوباره تلاش کن.');
+   const confirmed=confirm((hadFolder?'ذخیره در پوشه انتخاب‌شده انجام نشد، برای همین فایل پشتیبان در پوشه دانلودها ذخیره شد. ':'فایل پشتیبان برای دانلود ارسال شد. ')+'پس از دیدن فایل AZA_Backup در دانلودها، «تأیید» را بزن تا خارج شوی. اگر فایل را نمی‌بینی «لغو» را بزن؛ در این صورت از برنامه خارج نمی‌شوی.');
    if(!confirmed){if(btn){btn.disabled=false;btn.textContent='خروج'}return;}
   }
+  azaWasLocked=false;
   azaLoggedIn=false;clearTimeout(azaIdleTimer);document.getElementById('loginScreen').style.display='flex';document.getElementById('loginPassword').value='';document.getElementById('loginUsername').value='';refreshBiometricUI();
   try{const saved=JSON.parse(localStorage.getItem('aza_remember_login')||'null');if(saved?.remember){document.getElementById('loginUsername').value=saved.username||'';document.getElementById('loginPassword').value=saved.password||'';document.getElementById('rememberLogin').checked=true}}catch(e){}
  }catch(err){console.error('Logout backup failed',err);alert('پشتیبان‌گیری کامل نشد؛ از برنامه خارج نشدی و اطلاعات دست‌نخورده ماند. فضای ذخیره‌سازی یا مجوز پوشه دانلود را بررسی کن.');}
@@ -745,7 +870,7 @@ async function logoutApp(){
 }
 try{const remembered=JSON.parse(localStorage.getItem('aza_remember_login')||'null');if(remembered?.remember){document.getElementById('loginUsername').value=remembered.username||'';document.getElementById('loginPassword').value=remembered.password||'';document.getElementById('rememberLogin').checked=true}}catch(e){}
 function openSettings(){fillSettingsForm();showPage('settings')}
-function fillSettingsForm(){document.getElementById('storeNameInput').value=storeSettings.name||'';document.getElementById('storeAddressInput').value=storeSettings.address||'';document.getElementById('storePhoneInput').value=storeSettings.phone||'';document.getElementById('usernameInput').value=credentials.username||'admin';document.getElementById('storeLogoPreview').src=storeSettings.logo||'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="14" fill="%23eaf0ff"/%3E%3Ctext x="32" y="39" font-size="19" font-family="Arial" font-weight="bold" text-anchor="middle" fill="%23172b4d"%3EA%3C/text%3E%3C/svg%3E';const li=document.getElementById('lowStockInput');if(li)li.value=lowLimit();loadSecurityPrefsUI();refreshBiometricUI()}
+function fillSettingsForm(){document.getElementById('storeNameInput').value=storeSettings.name||'';document.getElementById('storeAddressInput').value=storeSettings.address||'';document.getElementById('storePhoneInput').value=storeSettings.phone||'';document.getElementById('usernameInput').value=credentials.username||'admin';document.getElementById('storeLogoPreview').src=storeSettings.logo||'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="14" fill="%23eaf0ff"/%3E%3Ctext x="32" y="39" font-size="19" font-family="Arial" font-weight="bold" text-anchor="middle" fill="%23172b4d"%3EA%3C/text%3E%3C/svg%3E';const li=document.getElementById('lowStockInput');if(li)li.value=lowLimit();loadSecurityPrefsUI();refreshBiometricUI();refreshBackupFolderUI()}
 function loadStoreLogo(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{storeSettings.logo=r.result;document.getElementById('storeLogoPreview').src=r.result};r.readAsDataURL(f)}
 function saveStoreSettings(){storeSettings.name=document.getElementById('storeNameInput').value.trim()||'فروشگاه شما';storeSettings.address=document.getElementById('storeAddressInput').value.trim();storeSettings.phone=document.getElementById('storePhoneInput').value.trim();persist();document.getElementById('storeTitle').textContent=storeSettings.name;if(storeSettings.logo)document.getElementById('headerLogo').innerHTML=`<img src="${storeSettings.logo}" style="width:100%;height:100%;object-fit:cover;border-radius:11px" alt="لوگو">`;toast('مشخصات فروشگاه ذخیره شد.')}
 function changeCredentials(){const u=document.getElementById('usernameInput').value.trim(),old=document.getElementById('oldPassword').value,n=document.getElementById('newPassword').value,c=document.getElementById('confirmPassword').value;if(old!==credentials.password){toast('رمز عبور فعلی درست نیست.');return}if(!u||n.length<4||n!==c){toast('نام کاربری را وارد کن و رمز جدید حداقل ۴ حرف و یکسان باشد.');return}credentials={username:u,password:n};try{const saved=JSON.parse(localStorage.getItem('aza_remember_login')||'null');if(saved?.remember)localStorage.setItem('aza_remember_login',JSON.stringify({username:u,password:n,remember:true}))}catch(e){}persist();['oldPassword','newPassword','confirmPassword'].forEach(id=>document.getElementById(id).value='');toast('اطلاعات ورود تغییر کرد.')}
@@ -833,7 +958,7 @@ async function initializeAzaPWA(){
          const marker='aza_backup_candidate_dismissed';
          if(localStorage.getItem(marker)!==best.key){
            const restore=confirm('یک نسخه پشتیبان قدیمی‌تر با اطلاعات بیشتری پیدا شد ('+fa(azaRecordCount(best.value))+' مورد در برابر '+fa(azaRecordCount(saved))+' مورد فعلی). آیا اطلاعات را از آن بازیابی کنم؟');
-           if(restore){const keepCredentials=credentials;const d=best.value;products=d.products;invoices=d.invoices;debts=Array.isArray(d.debts)?d.debts:[];settlementReceipts=Array.isArray(d.settlementReceipts)?d.settlementReceipts:[];if(d.storeSettings)storeSettings=d.storeSettings;credentials=keepCredentials;await azaDbWrite(azaCurrentState());}
+           if(restore){const keepCredentials=credentials;const d=best.value;products=d.products;invoices=d.invoices;debts=Array.isArray(d.debts)?d.debts:[];settlementReceipts=Array.isArray(d.settlementReceipts)?d.settlementReceipts:[];expenses=Array.isArray(d.expenses)?d.expenses:[];if(d.storeSettings)storeSettings=d.storeSettings;credentials=keepCredentials;await azaDbWrite(azaCurrentState());}
            else localStorage.setItem(marker,best.key);
          }
        }
